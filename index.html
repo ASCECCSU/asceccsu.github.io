@@ -1,0 +1,855 @@
+<!doctype html>
+
+<html lang="en" data-theme="blue">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+
+    <title>ASCE | CCSU</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <style>
+      :root {
+        --asce-blue: #005daa;
+
+        --light-bg: #ffffff;
+
+        --light-text: #005daa;
+
+        --dark-bg: #000000;
+
+        --dark-text: #ffffff;
+
+        --og-primary: #012f51;
+      }
+
+      [data-theme="light"] {
+        --bg: var(--light-bg);
+
+        --text: var(--light-text);
+
+        --footer-bg: var(--asce-blue);
+
+        --border-color: var(--light-text);
+      }
+
+      [data-theme="dark"] {
+        --bg: var(--dark-bg);
+
+        --text: var(--dark-text);
+
+        --footer-bg: #000000;
+
+        --border-color: white;
+      }
+
+      [data-theme="blue"] {
+        --bg: var(--asce-blue);
+
+        --text: #ffffff;
+
+        --footer-bg: var(--asce-blue);
+
+        --border-color: white;
+      }
+
+      html,
+      body {
+        font-family: "SF Pro Display", sans-serif;
+
+        background-color: var(--bg);
+
+        color: var(--text);
+
+        margin: 0;
+
+        padding: 0;
+
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      nav {
+        padding: 1.5rem 2rem;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        max-width: 1200px;
+
+        margin: auto;
+      }
+
+      .logo {
+        font-size: 1.7rem;
+
+        font-weight: 700;
+
+        text-decoration: none;
+
+        color: var(--text);
+
+        letter-spacing: -0.5px;
+      }
+
+      .join-button {
+        padding: 0.6rem 1.5rem;
+
+        background-color: var(--text);
+
+        color: var(--bg);
+
+        border: none;
+
+        border-radius: 999px;
+
+        cursor: pointer;
+
+        font-weight: 500;
+
+        text-decoration: none;
+      }
+
+      .theme-toggle {
+        position: fixed;
+
+        bottom: 1.5rem;
+
+        right: 1.5rem;
+
+        background: var(--footer-bg);
+
+        color: white;
+
+        border: none;
+
+        font-size: 1.5rem;
+
+        width: 2.5rem;
+
+        height: 2.5rem;
+
+        border-radius: 50%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        cursor: pointer;
+
+        z-index: 10;
+      }
+
+      header.hero {
+        text-align: center;
+
+        padding: 5rem 2rem 3rem;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+
+        margin-bottom: 1rem;
+
+        min-height: 11rem;
+
+        line-height: 1.4;
+
+        max-width: 900px;
+
+        margin: auto;
+      }
+
+      .typed {
+        display: inline-block;
+
+        border-right: 2px solid var(--text);
+
+        white-space: normal;
+
+        overflow-wrap: break-word;
+
+        animation: blink 0.8s step-end infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+
+      .hero p.sub {
+        font-size: 1rem;
+
+        margin-top: 0.5rem;
+
+        opacity: 0.85;
+      }
+
+      .features {
+        max-width: 1000px;
+
+        margin: 4rem auto 3rem;
+
+        padding: 0 1.5rem;
+
+        display: flex;
+
+        gap: 2rem;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+      }
+
+      .feature {
+        flex: 1 1 280px;
+
+        max-width: 320px;
+
+        background: var(--bg);
+
+        border: 1px solid var(--border-color);
+
+        border-radius: 16px;
+
+        padding: 2rem;
+
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+
+        color: var(--text);
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: flex-start;
+      }
+
+      .feature h3 {
+        font-size: 1.3rem;
+
+        margin-bottom: 0.75rem;
+      }
+
+      .feature p {
+        font-size: 1rem;
+
+        line-height: 1.5;
+
+        flex-grow: 1;
+      }
+
+      .about,
+      .follow-instagram {
+        background-color: var(--bg);
+
+        color: white !important;
+
+        padding: 2.5rem 1.5rem;
+
+        text-align: center;
+      }
+
+      [data-theme="light"] .about,
+      [data-theme="light"] .follow-instagram {
+        background-color: var(--asce-blue);
+
+        color: white !important;
+      }
+
+      .about p {
+        font-size: 1.12rem;
+
+        max-width: 800px;
+
+        margin: auto;
+
+        color: white !important;
+      }
+
+      .follow-title {
+        font-size: 1.8rem;
+
+        font-weight: 600;
+
+        margin-bottom: 1.5rem;
+
+        max-width: 600px;
+
+        margin-left: auto;
+
+        margin-right: auto;
+
+        line-height: 1.2;
+
+        letter-spacing: -0.02em;
+
+        padding: 0 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .follow-title {
+          font-size: 1.4rem;
+
+          margin-bottom: 1rem;
+
+          max-width: 100%;
+        }
+      }
+
+      .insta-linktree-wrapper {
+        display: flex;
+
+        justify-content: center;
+
+        gap: 1.5rem;
+
+        flex-wrap: wrap;
+
+        align-items: stretch;
+      }
+
+      .insta-linktree-wrapper iframe {
+        border-radius: 12px;
+
+        overflow: hidden;
+
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+
+      .insta-linktree-wrapper iframe:hover {
+        transform: scale(1.03);
+
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .linktree-og-card {
+        width: 320px;
+
+        height: 440px;
+
+        border-radius: 12px;
+
+        overflow: hidden;
+
+        text-decoration: none;
+
+        display: flex;
+
+        flex-direction: column;
+
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+
+        background-color: var(--og-primary);
+      }
+
+      .linktree-og-card:hover {
+        transform: scale(1.03);
+
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .linktree-og-card .og-img img {
+        width: 100%;
+
+        height: 160px;
+
+        object-fit: cover;
+
+        display: block;
+      }
+
+      .divider-line {
+        height: 2px;
+
+        background: white;
+
+        width: 100%;
+      }
+
+      .linktree-og-card .og-text {
+        flex: 1;
+
+        padding: 1rem;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        text-align: left;
+
+        background-color: var(--og-primary);
+
+        color: white;
+      }
+
+      .linktree-og-card h4 {
+        margin: 0 0 0.5rem;
+
+        font-size: 1.1rem;
+
+        font-weight: 600;
+      }
+
+      .linktree-og-card p {
+        margin: 0 0 0.5rem;
+
+        font-size: 0.95rem;
+
+        line-height: 1.4;
+
+        opacity: 0.9;
+      }
+
+      .linktree-og-card .og-url {
+        font-size: 0.75rem;
+
+        opacity: 0.7;
+      }
+
+      footer {
+        background: var(--footer-bg);
+
+        color: white;
+
+        text-align: center;
+
+        padding: 4rem 1rem 2rem;
+
+        position: relative;
+
+        margin-top: 0;
+      }
+
+      .footer-divider {
+        height: 4px;
+
+        background: white;
+
+        width: 100%;
+
+        margin-bottom: 2rem;
+
+        margin-top: -2rem;
+      }
+
+      .footer-icons {
+        margin-bottom: 1.2rem;
+
+        font-size: 2rem;
+      }
+
+      .footer-icons a {
+        color: white;
+
+        margin: 0 0.8rem;
+      }
+
+      .footer-note {
+        font-size: 0.8rem;
+
+        opacity: 0.75;
+      }
+
+      .footer-credit {
+        font-size: 0.5rem;
+
+        opacity: 0.5;
+
+        margin-top: 0.2rem;
+      }
+
+      .footer-small a {
+        font-size: 0.5rem;
+
+        opacity: 0.4;
+
+        color: #ffffff;
+
+        text-decoration: none;
+      }
+
+      .footer-small a:hover {
+        color: #ffffff;
+      }
+
+      @media (max-width: 768px) {
+        .features {
+          flex-direction: column;
+
+          align-items: center;
+
+          padding: 0 1rem;
+
+          gap: 1.5rem;
+        }
+
+        .feature {
+          width: 100%;
+
+          max-width: 360px;
+
+          margin: 0 auto;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+
+          min-height: 9rem;
+        }
+
+        .about p {
+          font-size: 1.1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+      <i class="bi bi-circle-half"></i>
+    </button>
+
+    <nav>
+      <a href="#" class="logo">ASCE | CCSU</a>
+
+      <a
+        class="join-button"
+        href="https://clubcentral.ccsu.edu/organization/americansocietyofcivilengineers"
+        target="_blank"
+      >
+        Join
+      </a>
+    </nav>
+
+    <header class="hero">
+      <h1>
+        <span class="typed" id="typed-text"></span>
+      </h1>
+
+      <p class="sub">Building the Future, One Experience at a Time.</p>
+    </header>
+
+    <section class="features">
+      <div class="feature">
+        <h3>Networking</h3>
+
+        <p>
+          Connect with industry professionals and like-minded peers to grow your
+          civil engineering network and build lasting professional
+          relationships.
+        </p>
+      </div>
+
+      <div class="feature">
+        <h3>Hands-on</h3>
+
+        <p>
+          Gain practical experience with design challenges, technical workshops,
+          and construction projects that bring classroom concepts to life.
+        </p>
+      </div>
+
+      <div class="feature">
+        <h3>Engineering Excursions</h3>
+
+        <p>
+          Learn beyond the classroom with educational outings that develop
+          invaluable experiences, foster camaraderie, and offer real-world
+          exposure to civil engineering applications.
+        </p>
+      </div>
+    </section>
+
+    <section class="about">
+      <p>
+        <strong>
+          The ASCE Student Chapter at Central Connecticut State University is
+          more than a club<br />
+
+          — A hub for collaboration, professional growth, and learning beyond
+          the classroom.
+        </strong>
+      </p>
+    </section>
+
+    <section class="follow-instagram">
+      <h2 class="follow-title">Connect &amp; Explore With Us</h2>
+
+      <div class="insta-linktree-wrapper">
+        <iframe
+          src="https://www.instagram.com/asce.ccsu/embed"
+          width="320"
+          height="440"
+          frameborder="0"
+          scrolling="no"
+          allowtransparency="true"
+        ></iframe>
+
+        <a
+          href="https://linktr.ee/asce.ccsu"
+          target="_blank"
+          class="linktree-og-card"
+        >
+          <div class="og-img">
+            <img src="/media/linktree_og.png" alt="Linktree OG ASCE CCSU" />
+
+            <div class="divider-line"></div>
+          </div>
+
+          <div class="og-text">
+            <h4>ASCE | CCSU on Linktree</h4>
+
+            <p>Find all our links in one place — events, socials, and more.</p>
+
+            <span class="og-url">linktr.ee/asce.ccsu</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-divider"></div>
+
+      <div class="footer-icons">
+        <a href="https://www.instagram.com/asce.ccsu" target="_blank"
+          ><i class="bi bi-instagram"></i
+        ></a>
+
+        <a href="https://www.linkedin.com/company/asce-ccsu" target="_blank"
+          ><i class="bi bi-linkedin"></i
+        ></a>
+
+        <a href="https://linktr.ee/asce.ccsu" target="_blank"
+          ><i class="bi bi-tree-fill"></i
+        ></a>
+
+        <a
+          href="https://clubcentral.ccsu.edu/organization/americansocietyofcivilengineers"
+          target="_blank"
+          ><i class="bi bi-c-square-fill"></i
+        ></a>
+      </div>
+
+      <div class="footer-note">
+        © <span id="year"></span> ASCE Central Connecticut State University
+        Student Chapter
+      </div>
+
+      <div class="footer-credit">
+        <span>
+          Version 5.26.25 | Design by
+
+          <a
+            href="https://linkedin.com/in/asalehengineer"
+            target="_blank"
+            style="color: #ffffff; text-decoration: none"
+          >
+            A. Saleh
+          </a>
+        </span>
+      </div>
+
+      <div class="footer-small">
+        <a href="https://ccsubluesteelsteelbridge.weebly.com" target="_blank">
+          Blue Steel Bridge 2018 Archive
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      // Typing animation
+
+      const phrases = [
+        "Learning beyond the classroom.",
+
+        "Engineering excursions and beyond-campus learning.",
+
+        "Real-world exposure to civil engineering applications.",
+
+        "Grow with ASCE CCSU.",
+
+        "Design. Build. Inspire.",
+
+        "Future-ready through fieldwork.",
+
+        "Where Central's future engineers unite.",
+
+        "Explore infrastructure up close.",
+
+        "Bridging theory and practice.",
+
+        "Discover, design, deliver.",
+
+        "Build your career foundation.",
+
+        "Innovation through collaboration.",
+
+        "Promoting leadership in engineering.",
+
+        "Connect. Construct. Contribute.",
+
+        "Building bridges, in more ways than one.",
+
+        "Invaluable experiences make excelling engineers.",
+
+        "Build, learn, and develop at Central's premier Civil Engineering club.",
+      ];
+
+      let fullPhrases = [
+        "Connecting future civil engineers at Central.",
+
+        ...shuffle(phrases),
+      ];
+
+      let history = ["Connecting future civil engineers at Central."];
+
+      let i = 0,
+        j = 0,
+        isDeleting = false;
+
+      const speed = 110,
+        pause = 2500;
+
+      const target = document.getElementById("typed-text");
+
+      function shuffle(array) {
+        const arr = array.slice();
+
+        for (let k = arr.length - 1; k > 0; k--) {
+          const m = Math.floor(Math.random() * (k + 1));
+
+          [arr[k], arr[m]] = [arr[m], arr[k]];
+        }
+
+        return arr;
+      }
+
+      function type() {
+        const p = fullPhrases[i];
+
+        const maxChars = window.innerWidth < 600 ? 38 : 60;
+
+        target.style.fontSize = p.length > maxChars ? "1.5rem" : "";
+
+        target.textContent = p.substring(0, j);
+
+        if (!isDeleting && j === p.length) {
+          isDeleting = true;
+
+          setTimeout(type, pause);
+        } else if (isDeleting && j === 0) {
+          isDeleting = false;
+
+          do {
+            i = (i + 1) % fullPhrases.length;
+          } while (history.slice(-5).includes(fullPhrases[i]));
+
+          history.push(fullPhrases[i]);
+
+          setTimeout(type, 400);
+        } else {
+          j += isDeleting ? -1 : 1;
+
+          setTimeout(type, isDeleting ? speed / 2 : speed);
+        }
+      }
+
+      type();
+
+      // Theme toggle
+
+      function toggleTheme() {
+        const html = document.documentElement;
+
+        const current = html.getAttribute("data-theme");
+
+        const next =
+          current === "blue" ? "light" : current === "light" ? "dark" : "blue";
+
+        html.setAttribute("data-theme", next);
+
+        localStorage.setItem("theme", next);
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const saved = localStorage.getItem("theme");
+
+        if (saved) {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // ASCE ASCII Easter Egg :)
+
+        console.log(`
+
+                              +++++++++                 ++++++++++++              +++++++++++++ ++++++++++++++++++                      
+
+                             +++++++++++             ++++++++++++++++++        +++++++++++++++++++++++++++++++++++                      
+
+                            +++++++++++++           ++++++++++++++++++      +++++++++++++++++++ ++++++++++++++++++                      
+
+                           ++++++++++++++          ++++++++++++++++++      +++++++++++++++++++  ++++++++++++++++++                      
+
+                          ++++++++++++++++        ++++++++++      ++      +++++++++++++++++++   +++++++++                               
+
+                          +++++++++++++++++       ++++++++++             ++++++++++             +++++++++                               
+
+                         +++++++++++++++++++      +++++++++++++++       ++++++++++              ++++++++++++++++++                      
+
+                        ++++++++++ +++++++++       +++++++++++++++++++  +++++++++               ++++++++++++++++++                      
+
+                        +++++++++   +++++++++        ++++++++++++++++++ +++++++++               ++++++++++++++++++                      
+
+                       +++++++++     +++++++++         ++++++++++++++++++++++++++               ++++++++++++++++++                      
+
+                  +++++++++++++++++++++++++++++              +++++++++++++++++++++              +++++++++                               
+
+                     ++++++++++++++++++++++++++      +         +++++++++++++++++++++            +++++++++                               
+
+                  +      +++++++++++++++++++++++   ++++++     ++++++++++  +++++++++++++++++++   ++++++++++++++++++                      
+
+                  +++++++++++++++++++++++++++++++ ++++++++++++++++++++++   +++++++++++++++++++  ++++++++++++++++++                      
+
+                   ++++++++++           +++++++++++++++++++++++++++++++      ++++++++++++++++++ ++++++++++++++++++                      
+
+                  ++++++++++             +++++++++ ++++++++++++++++++          +++++++++++++++++++++++++++++++++++                      
+
+                  +++++++++               ++++++++     +++++++++++                 +++++++++++  ++++++++++++++++++                      
+
+        `);
+      });
+    </script>
+  </body>
+</html>
