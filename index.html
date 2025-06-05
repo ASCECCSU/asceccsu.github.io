@@ -60,547 +60,572 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
-
     <style>
-      :root {
-        --asce-blue: #005daa;
-        --light-bg: #ffffff;
-        --light-text: #005daa;
-        --dark-bg: #000000;
-        --dark-text: #ffffff;
-        --og-primary: #012f51;
-        --green-dot: #55ff55;
-        --red-dot: #ff5555;
-      }
+  :root {
+    --asce-blue: #005daa;
+    --light-bg: #ffffff;
+    --light-text: #005daa;
+    --dark-bg: #000000;
+    --dark-text: #ffffff;
+    --og-primary: #012f51;
+    --green-dot: #55ff55;
+    --red-dot: #ff5555;
+  }
 
-      [data-theme="light"] {
-        --bg: var(--light-bg);
-        --text: var(--light-text);
-        --footer-bg: var(--asce-blue);
-        --border-color: var(--light-text);
-      }
-      [data-theme="dark"] {
-        --bg: var(--dark-bg);
-        --text: var(--dark-text);
-        --footer-bg: #000000;
-        --border-color: white;
-      }
-      [data-theme="blue"] {
-        --bg: var(--asce-blue);
-        --text: #ffffff;
-        --footer-bg: var(--asce-blue);
-        --border-color: white;
-      }
+  [data-theme="light"] {
+    --bg: var(--light-bg);
+    --text: var(--light-text);
+    --footer-bg: var(--asce-blue);
+    --border-color: var(--light-text);
+  }
+  [data-theme="dark"] {
+    --bg: var(--dark-bg);
+    --text: var(--dark-text);
+    --footer-bg: #000000;
+    --border-color: white;
+  }
+  [data-theme="blue"] {
+    --bg: var(--asce-blue);
+    --text: #ffffff;
+    --footer-bg: var(--asce-blue);
+    --border-color: white;
+  }
 
-      html,
-      body {
-        font-family:
-          "SF Pro Display", Roboto, "Helvetica Neue", Arial, sans-serif;
-        background-color: var(--bg);
-        color: var(--text);
-        margin: 0;
-        padding: 0;
-        transition:
-          background 0.3s,
-          color 0.3s;
-      }
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
+  html,
+  body {
+    font-family: "SF Pro Display", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s, color 0.3s;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-      /* Loader */
-      #loader {
-        position: fixed;
-        inset: 0;
-        background-color: var(--bg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-      }
-      .spinner {
-        border: 8px solid rgba(255, 255, 255, 0.3);
-        border-top: 8px solid var(--text);
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        animation: spin 1s linear infinite;
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
+  /* LOADER */
+  #loader {
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .spinner {
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid var(--text);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
-      nav {
-        padding: 1.5rem 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: auto;
-      }
-      .logo {
-        font-size: 1.7rem;
-        font-weight: 700;
-        text-decoration: none;
-        color: var(--text);
-        letter-spacing: -0.5px;
-      }
-      .join-button {
-        padding: 0.6rem 1.5rem;
-        background-color: var(--text);
-        color: var(--bg);
-        border: none;
-        border-radius: 999px;
-        cursor: pointer;
-        font-weight: 500;
-        text-decoration: none;
-      }
+  nav {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .logo {
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+  .join-button {
+    padding: 0.6rem 1.5rem;
+    background-color: var(--text);
+    color: var(--bg);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+  }
 
-      .theme-toggle {
-        position: fixed;
-        bottom: 1.5rem;
-        right: 1.5rem;
-        background: var(--footer-bg);
-        color: white;
-        border: none;
-        font-size: 1.5rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 10;
-      }
+  .theme-toggle {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--footer-bg);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+  }
 
-      header.hero {
-        text-align: center;
-        padding: 5rem 2rem 3rem;
-      }
-      .hero h1 {
-        font-size: 2.8rem;
-        margin-bottom: 1rem;
-        min-height: 11rem;
-        line-height: 1.4;
-        max-width: 900px;
-        margin: auto;
-      }
-      .typed {
-        display: inline-block;
-        border-right: 2px solid var(--text);
-        animation: blink 0.8s step-end infinite;
-      }
-      @keyframes blink {
-        50% {
-          border-color: transparent;
-        }
-      }
-      .hero p.sub {
-        font-size: 1rem;
-        margin-top: 0.5rem;
-        opacity: 0.85;
-      }
+  header.hero {
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    min-height: 11rem;
+    line-height: 1.4;
+    max-width: 900px;
+    margin: auto;
+  }
+  .typed {
+    display: inline-block;
+    border-right: 2px solid var(--text);
+    white-space: normal;
+    overflow-wrap: break-word;
+    animation: blink 0.8s step-end infinite;
+  }
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+  .hero p.sub {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    opacity: 0.85;
+  }
 
-      .features {
-        max-width: 1000px;
-        margin: 4rem auto 3rem;
-        padding: 0 1.5rem;
-        display: flex;
-        gap: 2rem;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .feature {
-        flex: 1 1 280px;
-        max-width: 320px;
-        background: var(--bg);
-        border: 1px solid var(--border-color);
-        border-radius: 16px;
-        padding: 2rem;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-        color: var(--text);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-      }
-      .feature h3 {
-        font-size: 1.3rem;
-        margin-bottom: 0.75rem;
-      }
-      .feature p {
-        font-size: 1rem;
-        line-height: 1.5;
-        flex-grow: 1;
-      }
+  .features {
+    max-width: 1000px;
+    margin: 4rem auto 3rem;
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .feature {
+    flex: 1 1 280px;
+    max-width: 320px;
+    background: var(--bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .feature h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
+  }
+  .feature p {
+    font-size: 1rem;
+    line-height: 1.5;
+    flex-grow: 1;
+  }
 
-      .about,
-      .follow-instagram {
-        background-color: var(--bg);
-        color: white !important;
-        padding: 2.5rem 1.5rem;
-        text-align: center;
-      }
-      [data-theme="light"] .about,
-      [data-theme="light"] .follow-instagram {
-        background-color: var(--asce-blue);
-        color: white !important;
-      }
-      .about p {
-        font-size: 1.12rem;
-        max-width: 800px;
-        margin: auto;
-        color: white !important;
-      }
-      .follow-title {
-        font-size: 1.8rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-        padding: 0 1rem;
-      }
+  .about,
+  .follow-instagram {
+    background-color: var(--bg);
+    color: white !important;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+  [data-theme="light"] .about,
+  [data-theme="light"] .follow-instagram {
+    background-color: var(--asce-blue);
+    color: white !important;
+  }
+  .about p {
+    font-size: 1.12rem;
+    max-width: 800px;
+    margin: auto;
+    color: white !important;
+  }
+  .follow-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    padding: 0 1rem;
+  }
 
-      .insta-linktree-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-      }
-      .insta-linktree-wrapper iframe,
-      .insta-linktree-wrapper .linktree-og-card,
-      .insta-linktree-wrapper .mc-card {
-        border-radius: 12px;
-        overflow: hidden;
-        transition:
-          transform 0.4s ease,
-          box-shadow 0.4s ease;
-      }
-      .insta-linktree-wrapper iframe:hover,
-      .insta-linktree-wrapper .linktree-og-card:hover,
-      .insta-linktree-wrapper .mc-card:hover {
-        transform: scale(1.03);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      }
+  .insta-linktree-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .insta-linktree-wrapper iframe,
+  .insta-linktree-wrapper .linktree-og-card,
+  .insta-linktree-wrapper .mc-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .insta-linktree-wrapper iframe:hover,
+  .insta-linktree-wrapper .linktree-og-card:hover,
+  .insta-linktree-wrapper .mc-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
 
-      .linktree-og-card,
-      .mc-card {
-        width: 320px;
-        height: 440px;
-        border-radius: 12px;
-        overflow: hidden;
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-        background-color: var(--og-primary);
-        color: white;
-      }
-      .linktree-og-card .og-img img {
-        width: 100%;
-        height: 160px;
-        object-fit: cover;
-      }
-      .linktree-og-card .divider-line,
-      .mc-card .divider-line {
-        height: 2px;
-        background: white;
-        width: 100%;
-      }
-      .linktree-og-card .og-text,
-      .mc-card .og-text {
-        flex: 1;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: left;
-        background-color: var(--og-primary);
-        color: white;
-      }
-      .linktree-og-card h4,
-      .mc-card h4 {
-        margin: 0 0 0.5rem;
-        font-size: 1.1rem;
-        font-weight: 600;
-      }
-      .linktree-og-card p,
-      .mc-card p {
-        margin: 0 0 0.5rem;
-        font-size: 0.95rem;
-        line-height: 1.4;
-        opacity: 0.9;
-      }
-      .linktree-og-card .og-url,
-      .mc-card .og-url {
-        font-size: 0.75rem;
-        opacity: 0.7;
-      }
+  .linktree-og-card,
+  .mc-card {
+    width: 320px;
+    height: 440px;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--og-primary);
+    color: white;
+  }
+  .linktree-og-card .og-img img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+  .linktree-og-card .divider-line,
+  .mc-card .divider-line {
+    height: 2px;
+    background: white;
+    width: 100%;
+  }
+  .linktree-og-card .og-text,
+  .mc-card .og-text {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    background-color: var(--og-primary);
+    color: white;
+  }
+  .linktree-og-card h4,
+  .mc-card h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .linktree-og-card p,
+  .mc-card p {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    opacity: 0.9;
+  }
+  .linktree-og-card .og-url,
+  .mc-card .og-url {
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
 
-      /* Minecraft-specific */
-      .mc-card-top {
-        background: var(--og-primary);
-        color: #ffffff;
-        font-family: monospace;
-        padding: 1rem;
-        height: 160px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-      }
-      .mc-card-top .mc-header {
-        font-size: 1rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-      }
-      .mc-card-top .status-row {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin: 0.5rem 0;
-        font-size: 0.8rem;
-      }
-      .mc-card-top .status-item {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-      }
-      .mc-card-top .dot {
-        width: 0.6rem;
-        height: 0.6rem;
-        border-radius: 50%;
-        background: var(--red-dot);
-      }
-      .mc-card-top .dot.online {
-        background: var(--green-dot);
-      }
-      .mc-card-top .mc-players,
-      .mc-card-top .mc-version {
-        margin-top: 0.5rem;
-        font-size: 0.8rem;
-      }
-      .mc-card-top .small-note {
-        font-size: 0.7rem;
-        opacity: 0.85;
-        margin-top: 0.3rem;
-      }
-      .mc-text {
-        flex: 1;
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: left;
-        background-color: var(--og-primary);
-        color: white;
-      }
+  /* Minecraft-specific */
+  .mc-card-top {
+    background: var(--og-primary);
+    color: #ffffff;
+    font-family: monospace;
+    padding: 1rem;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .mc-card-top .mc-header {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  .mc-card-top .status-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+    font-size: 0.8rem;
+  }
+  .mc-card-top .status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .mc-card-top .dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--red-dot);
+  }
+  .mc-card-top .dot.online {
+    background: var(--green-dot);
+  }
+  .mc-card-top .mc-players,
+  .mc-card-top .mc-version {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+  }
+  .mc-card-top .small-note {
+    font-size: 0.7rem;
+    opacity: 0.85;
+    margin-top: 0.3rem;
+  }
+  .mc-text {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    background-color: var(--og-primary);
+    color: white;
+  }
 
-      /* Footer */
-      footer {
-        background: var(--footer-bg);
-        color: white;
-        text-align: center;
-        padding: 4rem 1rem 2rem;
-        position: relative;
-      }
-      .footer-divider {
-        height: 4px;
-        background: white;
-        width: 100%;
-        margin-bottom: 2rem;
-        margin-top: -2rem;
-      }
-      .footer-icons {
-        margin-bottom: 1.2rem;
-        font-size: 2rem;
-      }
-      .footer-icons a {
-        color: white;
-        margin: 0 0.8rem;
-      }
-      .footer-note {
-        font-size: 0.8rem;
-        opacity: 0.75;
-      }
-      .footer-credit {
-        font-size: 0.5rem;
-        opacity: 0.5;
-        margin-top: 0.2rem;
-      }
-      .footer-small a {
-        font-size: 0.6rem; /* slightly larger */
-        opacity: 0.4;
-        color: #ffffff;
-        text-decoration: none;
-      }
+  /* Footer */
+  footer {
+    background: var(--footer-bg);
+    color: white;
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+    position: relative;
+  }
+  .footer-divider {
+    height: 4px;
+    background: white;
+    width: 100%;
+    margin-bottom: 2rem;
+    margin-top: -2rem;
+  }
+  .footer-icons {
+    margin-bottom: 1.2rem;
+    font-size: 2rem;
+  }
+  .footer-icons a {
+    color: white;
+    margin: 0 0.8rem;
+  }
+  .footer-note {
+    font-size: 0.8rem;
+    opacity: 0.75;
+  }
+  .footer-credit {
+    font-size: 0.5rem;
+    opacity: 0.5;
+    margin-top: 0.2rem;
+  }
+  .footer-small a {
+    font-size: 0.6rem; /* slightly larger */
+    opacity: 0.4;
+    color: #ffffff;
+    text-decoration: none;
+  }
 
-      @media (max-width: 768px) {
-        .features {
-          flex-direction: column;
-          align-items: center;
-          padding: 0 1rem;
-          gap: 1.5rem;
-        }
-        .feature {
-          width: 100%;
-          max-width: 360px;
-          margin: 0 auto;
-        }
-        .hero h1 {
-          font-size: 2rem;
-          min-height: 9rem;
-        }
-        .about p {
-          font-size: 1.1rem;
-        }
-        .follow-title {
-          font-size: 1.4rem;
-          margin-bottom: 1rem;
-          max-width: 100%;
-        }
-        .insta-linktree-wrapper {
-          flex-direction: column;
-          align-items: center;
-          gap: 1rem;
-        }
-      }
+  @media (max-width: 768px) {
+    .features {
+      flex-direction: column;
+      align-items: center;
+      padding: 0 1rem;
+      gap: 1.5rem;
+    }
+    .feature {
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      min-height: 9rem;
+    }
+    .about p {
+      font-size: 1.1rem;
+    }
+    .follow-title {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      max-width: 100%;
+    }
+    .insta-linktree-wrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
 
-      /* Modal */
-      .modal-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.4);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 100;
-      }
-      .modal-content {
-        background-color: var(--og-primary);
-        color: #ffffff;
-        border-radius: 24px;
-        padding: 2.5rem 2rem;
-        max-width: 400px;
-        width: 90%;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-        position: relative;
-        font-size: 0.95rem;
-      }
-      .modal-content h3 {
-        margin-top: 0;
-        margin-bottom: 1rem;
-        font-size: 1.5rem;
-        text-align: center;
-        color: #ffffff;
-      }
-      .modal-content p {
-        margin: 0.75rem 0;
-        line-height: 1.4;
-        color: #ffffff;
-      }
-      .modal-close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background: none;
-        border: none;
-        font-size: 1.3rem;
-        cursor: pointer;
-        color: #ffffff;
-      }
-      .modal-motd {
-        background: #000000;
-        color: #ffffff;
-        font-family: monospace;
-        padding: 1rem;
-        border-radius: 8px;
-        white-space: pre-wrap;
-        margin: 0.75rem 0 1.5rem;
-        font-size: 0.9rem;
-        line-height: 1.3;
-      }
-      .mc-status-row {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-bottom: 0.75rem;
-        font-size: 0.9rem;
-      }
-      .mc-status-item {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-      }
-      .mc-status-item .dot {
-        width: 0.6rem;
-        height: 0.6rem;
-        border-radius: 50%;
-        background: var(--red-dot);
-      }
-      .mc-status-item .dot.online {
-        background: var(--green-dot);
-      }
-      .whitelist-button {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.6rem 1.2rem;
-        background-color: #ffffff;
-        color: var(--og-primary);
-        border: none;
-        border-radius: 6px;
-        font-weight: 500;
-        text-decoration: none;
-        font-size: 0.95rem;
-        cursor: pointer;
-      }
-      .whitelist-button:hover {
-        opacity: 0.9;
-      }
+  /* Modal Overlay */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    overflow-y: auto;
+    padding: 20px;
+  }
 
-      /* Prevent scrolling when modal is open */
-      body.modal-open {
-        overflow: hidden;
-      }
+  /* Modal Content */
+  .modal-content {
+    background-color: var(--og-primary);
+    color: #ffffff;
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    max-width: 90vw;
+    width: 500px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+    position: relative;
+    font-size: 0.95rem;
+    overflow-y: auto;
+  }
 
-      /* ----------------------------- */
-      /* Minecraft-modal code snippets */
-      /* ----------------------------- */
-      .mc-copy-snippet {
-        display: block;
-        background-color: #0d1117; /* GitHub dark background */
-        border: 1px solid #30363d; /* GitHub dark border */
-        border-radius: 6px;
-        padding: 0.6rem 0.8rem;
-        font-family:
-          SFMono-Regular, Menlo, Consolas, "Liberation Mono", Courier, monospace;
-        font-size: 0.9rem;
-        margin: 0.5rem 0 1rem;
-        color: #c9d1d9; /* light text on dark bg */
-        position: relative;
-        cursor: pointer;
-        user-select: all;
-        overflow-wrap: break-word;
-        word-break: break-all;
-      }
-      .mc-copy-snippet .copy-icon {
-        margin-left: 0.4rem;
-        font-size: 1rem;
-        opacity: 0.6;
-        transition: opacity 0.2s;
-        color: #8b949e; /* GitHub icon gray */
-      }
-      .mc-copy-snippet:hover .copy-icon {
-        opacity: 1;
-      }
-    </style>
+  .modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #ffffff;
+  }
+  .modal-content p {
+    margin: 0.75rem 0;
+    line-height: 1.4;
+    color: #ffffff;
+  }
+  .modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    color: #ffffff;
+  }
+  .modal-motd {
+    background: #000000;
+    color: #ffffff;
+    font-family: monospace;
+    padding: 1rem;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    margin: 0.75rem 0 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .mc-status-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .mc-status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .mc-status-item .dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--red-dot);
+  }
+  .mc-status-item .dot.online {
+    background: var(--green-dot);
+  }
+  .whitelist-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: #ffffff;
+    color: var(--og-primary);
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+  .whitelist-button:hover {
+    opacity: 0.9;
+  }
+
+  /* Minecraft-modal code snippets */
+  .mc-copy-snippet {
+    display: block;
+    background-color: #0d1117;      /* GitHub dark background */
+    border: 1px solid #30363d;      /* GitHub dark border */
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    font-family: SFMono-Regular, Menlo, Consolas, "Liberation Mono", Courier, monospace;
+    font-size: 0.9rem;
+    margin: 0.5rem 0 1rem;
+    color: #c9d1d9;                  /* light text on dark bg */
+    position: relative;
+    cursor: pointer;
+    user-select: all;
+    overflow-wrap: break-word;
+    word-break: break-all;
+  }
+  .mc-copy-snippet .copy-icon {
+    margin-left: 0.4rem;
+    font-size: 1rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    color: #8b949e;                  /* GitHub icon gray */
+  }
+  .mc-copy-snippet:hover .copy-icon {
+    opacity: 1;
+  }
+
+  /* Prevent scrolling when modal is open */
+  body.modal-open {
+    overflow: hidden;
+  }
+
+  /* Responsive Adjustments for Modals */
+  @media (max-width: 600px) {
+    .modal-content {
+      width: 95vw;
+      padding: 16px;
+    }
+
+    .modal-content iframe {
+      width: 100% !important;
+      height: 500px !important;
+    }
+
+    .modal-close {
+      font-size: 1.5rem;
+      top: 10px;
+      right: 10px;
+    }
+
+    .mc-copy-snippet {
+      font-size: 13px;
+      padding: 10px;
+    }
+  }
+</style>
+
   </head>
 
   <body>
@@ -807,14 +832,15 @@
           &times;
         </button>
         <iframe
-          src="https://tally.so/embed/3XvlRz?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-          width="100%"
-          height="600"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          style="border: none; border-radius: 6px"
-        ></iframe>
+  data-tally-src="https://tally.so/embed/3XvlRz?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+  width="100%"
+  height="600"
+  frameborder="0"
+  marginheight="0"
+  marginwidth="0"
+  title="Minecraft Whitelist"
+  style="min-width: 100%; max-width: 100%;"
+></iframe>
       </div>
     </div>
 
