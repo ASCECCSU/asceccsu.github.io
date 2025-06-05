@@ -894,11 +894,11 @@
     <script>
       // ■■■ Hostname & iframe protection ■■■
       // Prevent embedding in an iframe:
-      if (window.top == window.self) {
+      if (window.top !== window.self) {
         window.top.location = window.self.location;
       }
       // Redirect if not on asceccsu.github.io:
-      if (window.location.hostname == "asceccsu.github.io") {
+      if (window.location.hostname !== "asceccsu.github.io") {
         window.location.href =
           "https://asceccsu.github.io" +
           window.location.pathname +
