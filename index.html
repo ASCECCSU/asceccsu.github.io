@@ -72,7 +72,6 @@
         --green-dot: #55ff55;
         --red-dot: #ff5555;
       }
-
       [data-theme="light"] {
         --bg: var(--light-bg);
         --text: var(--light-text);
@@ -110,7 +109,7 @@
         box-sizing: border-box;
       }
 
-      /* Loader */
+      /* LOADER */
       #loader {
         position: fixed;
         inset: 0;
@@ -482,8 +481,6 @@
         align-items: center;
         justify-content: center;
         z-index: 100;
-        margin-bottom: 1.2rem;
-        margin-top: 1.2rem
       }
       .modal-content {
         background-color: var(--og-primary);
@@ -495,7 +492,9 @@
         box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
         position: relative;
         font-size: 0.95rem;
+        overflow-y: auto;
       }
+
       .modal-content h3 {
         margin-top: 0;
         margin-bottom: 1rem;
@@ -517,7 +516,7 @@
         font-size: 1.8rem;
         cursor: pointer;
         color: #ffffff;
-        padding: 1rem 1rem 1rem;
+        padding: 1rem;
       }
       .modal-motd {
         background: #000000;
@@ -559,7 +558,7 @@
         color: var(--og-primary);
         border: none;
         border-radius: 6px;
-        font-weight: 500;
+        font-weight: 580;
         text-decoration: none;
         font-size: 0.95rem;
         cursor: pointer;
@@ -573,20 +572,18 @@
         overflow: hidden;
       }
 
-      /* ----------------------------- */
       /* Minecraft-modal code snippets */
-      /* ----------------------------- */
       .mc-copy-snippet {
         display: block;
-        background-color: #0d1117; /* GitHub dark background */
-        border: 1px solid #30363d; /* GitHub dark border */
+        background-color: #0d1117;
+        border: 1px solid #30363d;
         border-radius: 6px;
         padding: 0.6rem 0.8rem;
         font-family:
           SFMono-Regular, Menlo, Consolas, "Liberation Mono", Courier, monospace;
         font-size: 0.9rem;
         margin: 0.5rem 0 1rem;
-        color: #c9d1d9; /* light text on dark bg */
+        color: #c9d1d9;
         position: relative;
         cursor: pointer;
         user-select: all;
@@ -598,10 +595,55 @@
         font-size: 1rem;
         opacity: 0.6;
         transition: opacity 0.2s;
-        color: #8b949e; /* GitHub icon gray */
+        color: #8b949e;
       }
       .mc-copy-snippet:hover .copy-icon {
         opacity: 1;
+      }
+
+      /* Tally Modal (75% scaled card) */
+      #tally-modal .modal-content {
+        width: 75vw;
+        height: auto;
+        max-width: 800px;
+        max-height: 90vh;
+        border-radius: 24px;
+        padding: 0;
+        overflow: hidden;
+      }
+      #tally-modal .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: #ffffff;
+        padding: 1rem;
+      }
+      #tally-modal .tally-form-wrapper {
+        border-radius: 0 0 24px 24px;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      #tally-modal iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      @media (max-width: 480px) {
+        #tally-modal .modal-content {
+          width: 90vw;
+          height: 80vh;
+        }
+        #tally-modal .modal-close {
+          font-size: 2rem;
+          top: 0.5rem;
+          right: 0.5rem;
+        }
       }
     </style>
   </head>
@@ -784,40 +826,29 @@
 
         <!-- Button to open Tally modal -->
         <button id="open-tally-button" class="whitelist-button">
-          Join Whitelist
+          Whitelist Me!
         </button>
       </div>
     </div>
 
-    <!-- Tally Modal (initially hidden) -->
+    <!-- Tally Modal (scaled card at 75%) -->
     <div id="tally-modal" class="modal-overlay">
-      <div
-        class="modal-content"
-        style="max-width: 500px; width: 95%; padding: 1rem"
-      >
+      <div class="modal-content">
         <button
           class="modal-close"
           id="tally-close-button"
           aria-label="Close Tally Form"
-          style="
-            color: #ffffff;
-            position: absolute;
-            top: 1.2rem;
-            right: 1.2rem;
-            font-size: 2.2rem;
-          "
         >
           &times;
         </button>
-        <iframe
-          src="https://tally.so/embed/3XvlRz?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-          width="100%"
-          height="600"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          style="border: none; border-radius: 6px"
-        ></iframe>
+        <div class="tally-form-wrapper">
+          <iframe
+            data-tally-src="https://tally.so/embed/3XvlRz?hideTitle=1&transparentBackground=1&dynamicHeight=1"
+            loading="lazy"
+            allow="clipboard-write"
+            title="Tally Form"
+          ></iframe>
+        </div>
       </div>
     </div>
 
@@ -894,17 +925,24 @@
 
     <script>
       // ■■■ Hostname & iframe protection ■■■
-      // Prevent embedding in an iframe:
       if (window.top !== window.self) {
         window.top.location = window.self.location;
       }
-      // Redirect if not on asceccsu.github.io:
       if (window.location.hostname !== "asceccsu.github.io") {
         window.location.href =
           "https://asceccsu.github.io" +
           window.location.pathname +
           window.location.search;
       }
+
+      // Inject Tally embed script
+      (function () {
+        const d = document,
+          s = d.createElement("script");
+        s.src = "https://tally.so/widgets/embed.js";
+        s.defer = true;
+        d.body.appendChild(s);
+      })();
 
       // Typing animation
       const phrases = [
@@ -937,7 +975,6 @@
       const speed = 110,
         pause = 2500;
       const target = document.getElementById("typed-text");
-
       function shuffle(array) {
         const arr = array.slice();
         for (let k = arr.length - 1; k > 0; k--) {
@@ -946,13 +983,11 @@
         }
         return arr;
       }
-
       function type() {
         const p = fullPhrases[i];
         const maxChars = window.innerWidth < 600 ? 38 : 60;
         target.style.fontSize = p.length > maxChars ? "1.5rem" : "";
         target.textContent = p.substring(0, j);
-
         if (!isDeleting && j === p.length) {
           isDeleting = true;
           setTimeout(type, pause);
@@ -970,7 +1005,6 @@
       }
       type();
 
-      // Theme toggle: Blue → Dark → Light → Blue
       function toggleTheme() {
         const html = document.documentElement;
         const current = html.getAttribute("data-theme");
@@ -987,7 +1021,6 @@
         }
         document.getElementById("year").textContent = new Date().getFullYear();
 
-        // Hide loader once loaded
         window.addEventListener("load", () => {
           const loader = document.getElementById("loader");
           if (loader) {
@@ -1112,7 +1145,7 @@
           });
         });
 
-        // Tally modal functionality
+        // Tally modal functionality (scaled card)
         const openTallyBtn = document.getElementById("open-tally-button");
         const tallyModal = document.getElementById("tally-modal");
         const tallyClose = document.getElementById("tally-close-button");
@@ -1157,6 +1190,7 @@
         `);
       });
     </script>
+
     <!-- Cloudflare Web Analytics -->
     <script
       defer
