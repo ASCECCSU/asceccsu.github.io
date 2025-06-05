@@ -1,1068 +1,1167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="blue">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-Frame-Options" content="DENY" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta name="DuckDuckBot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta name="Slurp" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta name="baiduspider" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta name="yandex" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta name="facebookexternalhit" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta name="twitterbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta name="Slackbot-LinkExpanding" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate" />
-		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-		<meta http-equiv="Pragma" content="no-cache" />
-
-		<title>ASCE | CCSU</title>
-
-		<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap" rel="stylesheet" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-		<style>
-			:root {
-			  --asce-blue: #005daa;
-			  --light-bg: #ffffff;
-			  --light-text: #005daa;
-			  --dark-bg: #000000;
-			  --dark-text: #ffffff;
-			  --og-primary: #012f51;
-			  --green-dot: #55ff55;
-			  --red-dot: #ff5555;
-			}
-
-			[data-theme="light"] {
-			  --bg: var(--light-bg);
-			  --text: var(--light-text);
-			  --footer-bg: var(--asce-blue);
-			  --border-color: var(--light-text);
-			}
-			[data-theme="dark"] {
-			  --bg: var(--dark-bg);
-			  --text: var(--dark-text);
-			  --footer-bg: #000000;
-			  --border-color: white;
-			}
-			[data-theme="blue"] {
-			  --bg: var(--asce-blue);
-			  --text: #ffffff;
-			  --footer-bg: var(--asce-blue);
-			  --border-color: white;
-			}
-
-			html,
-			body {
-			  font-family: "SF Pro Display", Roboto, "Helvetica Neue", Arial, sans-serif;
-			  background-color: var(--bg);
-			  color: var(--text);
-			  margin: 0;
-			  padding: 0;
-			  transition: background 0.3s, color 0.3s;
-			}
-			*,
-			*::before,
-			*::after {
-			  box-sizing: border-box;
-			}
-
-			/* LOADER */
-			#loader {
-			  position: fixed;
-			  inset: 0;
-			  background-color: var(--bg);
-			  display: flex;
-			  align-items: center;
-			  justify-content: center;
-			  z-index: 1000;
-			}
-			.spinner {
-			  border: 8px solid rgba(255, 255, 255, 0.3);
-			  border-top: 8px solid var(--text);
-			  border-radius: 50%;
-			  width: 60px;
-			  height: 60px;
-			  animation: spin 1s linear infinite;
-			}
-			@keyframes spin {
-			  to {
-			    transform: rotate(360deg);
-			  }
-			}
-
-			nav {
-			  padding: 1.5rem 2rem;
-			  display: flex;
-			  justify-content: space-between;
-			  align-items: center;
-			  max-width: 1200px;
-			  margin: auto;
-			}
-			.logo {
-			  font-size: 1.7rem;
-			  font-weight: 700;
-			  text-decoration: none;
-			  color: var(--text);
-			  letter-spacing: -0.5px;
-			}
-			.join-button {
-			  padding: 0.6rem 1.5rem;
-			  background-color: var(--text);
-			  color: var(--bg);
-			  border: none;
-			  border-radius: 999px;
-			  cursor: pointer;
-			  font-weight: 500;
-			  text-decoration: none;
-			}
-
-			.theme-toggle {
-			  position: fixed;
-			  bottom: 1.5rem;
-			  right: 1.5rem;
-			  background: var(--footer-bg);
-			  color: white;
-			  border: none;
-			  font-size: 1.5rem;
-			  width: 2.5rem;
-			  height: 2.5rem;
-			  border-radius: 50%;
-			  display: flex;
-			  align-items: center;
-			  justify-content: center;
-			  cursor: pointer;
-			  z-index: 10;
-			}
-
-			header.hero {
-			  text-align: center;
-			  padding: 5rem 2rem 3rem;
-			}
-			.hero h1 {
-			  font-size: 2.8rem;
-			  margin-bottom: 1rem;
-			  min-height: 11rem;
-			  line-height: 1.4;
-			  max-width: 900px;
-			  margin: auto;
-			}
-			.typed {
-			  display: inline-block;
-			  border-right: 2px solid var(--text);
-			  white-space: normal;
-			  overflow-wrap: break-word;
-			  animation: blink 0.8s step-end infinite;
-			}
-			@keyframes blink {
-			  50% {
-			    border-color: transparent;
-			  }
-			}
-			.hero p.sub {
-			  font-size: 1rem;
-			  margin-top: 0.5rem;
-			  opacity: 0.85;
-			}
-
-			.features {
-			  max-width: 1000px;
-			  margin: 4rem auto 3rem;
-			  padding: 0 1.5rem;
-			  display: flex;
-			  gap: 2rem;
-			  justify-content: center;
-			  flex-wrap: wrap;
-			}
-			.feature {
-			  flex: 1 1 280px;
-			  max-width: 320px;
-			  background: var(--bg);
-			  border: 1px solid var(--border-color);
-			  border-radius: 16px;
-			  padding: 2rem;
-			  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-			  color: var(--text);
-			  display: flex;
-			  flex-direction: column;
-			  justify-content: flex-start;
-			}
-			.feature h3 {
-			  font-size: 1.3rem;
-			  margin-bottom: 0.75rem;
-			}
-			.feature p {
-			  font-size: 1rem;
-			  line-height: 1.5;
-			  flex-grow: 1;
-			}
-
-			.about,
-			.follow-instagram {
-			  background-color: var(--bg);
-			  color: white !important;
-			  padding: 2.5rem 1.5rem;
-			  text-align: center;
-			}
-			[data-theme="light"] .about,
-			[data-theme="light"] .follow-instagram {
-			  background-color: var(--asce-blue);
-			  color: white !important;
-			}
-			.about p {
-			  font-size: 1.12rem;
-			  max-width: 800px;
-			  margin: auto;
-			  color: white !important;
-			}
-			.follow-title {
-			  font-size: 1.8rem;
-			  font-weight: 600;
-			  margin-bottom: 1.5rem;
-			  max-width: 600px;
-			  margin-left: auto;
-			  margin-right: auto;
-			  line-height: 1.2;
-			  letter-spacing: -0.02em;
-			  padding: 0 1rem;
-			}
-
-			.insta-linktree-wrapper {
-			  display: flex;
-			  justify-content: center;
-			  align-items: stretch;
-			  gap: 1.5rem;
-			  flex-wrap: wrap;
-			}
-			.insta-linktree-wrapper iframe,
-			.insta-linktree-wrapper .linktree-og-card,
-			.insta-linktree-wrapper .mc-card {
-			  border-radius: 12px;
-			  overflow: hidden;
-			  transition: transform 0.4s ease, box-shadow 0.4s ease;
-			}
-			.insta-linktree-wrapper iframe:hover,
-			.insta-linktree-wrapper .linktree-og-card:hover,
-			.insta-linktree-wrapper .mc-card:hover {
-			  transform: scale(1.03);
-			  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-			}
-
-			.linktree-og-card,
-			.mc-card {
-			  width: 320px;
-			  height: 440px;
-			  border-radius: 12px;
-			  overflow: hidden;
-			  text-decoration: none;
-			  display: flex;
-			  flex-direction: column;
-			  background-color: var(--og-primary);
-			  color: white;
-			}
-			.linktree-og-card .og-img img {
-			  width: 100%;
-			  height: 160px;
-			  object-fit: cover;
-			}
-			.linktree-og-card .divider-line,
-			.mc-card .divider-line {
-			  height: 2px;
-			  background: white;
-			  width: 100%;
-			}
-			.linktree-og-card .og-text,
-			.mc-card .og-text {
-			  flex: 1;
-			  padding: 1rem;
-			  display: flex;
-			  flex-direction: column;
-			  justify-content: center;
-			  text-align: left;
-			  background-color: var(--og-primary);
-			  color: white;
-			}
-			.linktree-og-card h4,
-			.mc-card h4 {
-			  margin: 0 0 0.5rem;
-			  font-size: 1.1rem;
-			  font-weight: 600;
-			}
-			.linktree-og-card p,
-			.mc-card p {
-			  margin: 0 0 0.5rem;
-			  font-size: 0.95rem;
-			  line-height: 1.4;
-			  opacity: 0.9;
-			}
-			.linktree-og-card .og-url,
-			.mc-card .og-url {
-			  font-size: 0.75rem;
-			  opacity: 0.7;
-			}
-
-			/* Minecraft-specific */
-			.mc-card-top {
-			  background: var(--og-primary);
-			  color: #ffffff;
-			  font-family: monospace;
-			  padding: 1rem;
-			  height: 160px;
-			  display: flex;
-			  flex-direction: column;
-			  justify-content: center;
-			  text-align: center;
-			}
-			.mc-card-top .mc-header {
-			  font-size: 1rem;
-			  font-weight: bold;
-			  margin-bottom: 0.5rem;
-			}
-			.mc-card-top .status-row {
-			  display: flex;
-			  justify-content: center;
-			  gap: 1rem;
-			  margin: 0.5rem 0;
-			  font-size: 0.8rem;
-			}
-			.mc-card-top .status-item {
-			  display: flex;
-			  align-items: center;
-			  gap: 0.3rem;
-			}
-			.mc-card-top .dot {
-			  width: 0.6rem;
-			  height: 0.6rem;
-			  border-radius: 50%;
-			  background: var(--red-dot);
-			}
-			.mc-card-top .dot.online {
-			  background: var(--green-dot);
-			}
-			.mc-card-top .mc-players,
-			.mc-card-top .mc-version {
-			  margin-top: 0.5rem;
-			  font-size: 0.8rem;
-			}
-			.mc-card-top .small-note {
-			  font-size: 0.7rem;
-			  opacity: 0.85;
-			  margin-top: 0.3rem;
-			}
-			.mc-text {
-			  flex: 1;
-			  padding: 1rem;
-			  display: flex;
-			  flex-direction: column;
-			  justify-content: center;
-			  text-align: left;
-			  background-color: var(--og-primary);
-			  color: white;
-			}
-
-			/* Footer */
-			footer {
-			  background: var(--footer-bg);
-			  color: white;
-			  text-align: center;
-			  padding: 4rem 1rem 2rem;
-			  position: relative;
-			}
-			.footer-divider {
-			  height: 4px;
-			  background: white;
-			  width: 100%;
-			  margin-bottom: 2rem;
-			  margin-top: -2rem;
-			}
-			.footer-icons {
-			  margin-bottom: 1.2rem;
-			  font-size: 2rem;
-			}
-			.footer-icons a {
-			  color: white;
-			  margin: 0 0.8rem;
-			}
-			.footer-note {
-			  font-size: 0.8rem;
-			  opacity: 0.75;
-			}
-			.footer-credit {
-			  font-size: 0.5rem;
-			  opacity: 0.5;
-			  margin-top: 0.2rem;
-			}
-			.footer-small a {
-			  font-size: 0.6rem; /* slightly larger */
-			  opacity: 0.4;
-			  color: #ffffff;
-			  text-decoration: none;
-			}
-
-			@media (max-width: 768px) {
-			  .features {
-			    flex-direction: column;
-			    align-items: center;
-			    padding: 0 1rem;
-			    gap: 1.5rem;
-			  }
-			  .feature {
-			    width: 100%;
-			    max-width: 360px;
-			    margin: 0 auto;
-			  }
-			  .hero h1 {
-			    font-size: 2rem;
-			    min-height: 9rem;
-			  }
-			  .about p {
-			    font-size: 1.1rem;
-			  }
-			  .follow-title {
-			    font-size: 1.4rem;
-			    margin-bottom: 1rem;
-			    max-width: 100%;
-			  }
-			  .insta-linktree-wrapper {
-			    flex-direction: column;
-			    align-items: center;
-			    gap: 1rem;
-			  }
-			}
-
-			/* Modal Overlay */
-			.modal-overlay {
-			  position: fixed;
-			  inset: 0;
-			  background: rgba(0, 0, 0, 0.4);
-			  display: none;
-			  align-items: center;
-			  justify-content: center;
-			  z-index: 100;
-			  overflow-y: auto;
-			  padding: 20px;
-			}
-
-			/* Modal Content (generic) */
-			.modal-content {
-			  background-color: var(--og-primary);
-			  color: #ffffff;
-			  border-radius: 24px;
-			  padding: 2.5rem 2rem;
-			  max-width: 90vw;
-			  width: 400px; /* slightly narrower for Minecraft modal by default */
-			  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-			  position: relative;
-			  font-size: 0.95rem;
-			  overflow-y: auto;
-			}
-
-			/* If you want to specifically override for Tally modal to be a bit wider on desktop: */
-			#tally-modal .modal-content {
-			  width: 500px;
-			}
-
-			.modal-content h3 {
-			  margin-top: 0;
-			  margin-bottom: 1rem;
-			  font-size: 1.5rem;
-			  text-align: center;
-			  color: #ffffff;
-			}
-			.modal-content p {
-			  margin: 0.75rem 0;
-			  line-height: 1.4;
-			  color: #ffffff;
-			}
-			.modal-close {
-			  position: absolute;
-			  top: 1rem;
-			  right: 1rem;
-			  background: none;
-			  border: none;
-			  font-size: 1.8rem;
-			  cursor: pointer;
-			  color: #ffffff;
-			}
-			.modal-motd {
-			  background: #000000;
-			  color: #ffffff;
-			  font-family: monospace;
-			  padding: 1rem;
-			  border-radius: 8px;
-			  white-space: pre-wrap;
-			  margin: 0.75rem 0 1.5rem;
-			  font-size: 0.9rem;
-			  line-height: 1.3;
-			}
-
-			.mc-status-row {
-			  display: flex;
-			  justify-content: center;
-			  gap: 1rem;
-			  margin-bottom: 0.75rem;
-			  font-size: 0.9rem;
-			}
-			.mc-status-item {
-			  display: flex;
-			  align-items: center;
-			  gap: 0.3rem;
-			}
-			.mc-status-item .dot {
-			  width: 0.6rem;
-			  height: 0.6rem;
-			  border-radius: 50%;
-			  background: var(--red-dot);
-			}
-			.mc-status-item .dot.online {
-			  background: var(--green-dot);
-			}
-			.whitelist-button {
-			  display: inline-block;
-			  margin-top: 1rem;
-			  margin-bottom: 1rem;
-			  padding: 0.6rem 1.2rem;
-			  background-color: #ffffff;
-			  color: var(--og-primary);
-			  border: none;
-			  border-radius: 6px;
-			  font-weight: 500;
-			  text-decoration: none;
-			  font-size: 0.95rem;
-			  cursor: pointer;
-			}
-			.whitelist-button:hover {
-			  opacity: 0.9;
-			}
-
-			/* Minecraft-modal code snippets */
-			.mc-copy-snippet {
-			  display: block;
-			  background-color: #0d1117;      /* GitHub dark background */
-			  border: 1px solid #30363d;      /* GitHub dark border */
-			  border-radius: 6px;
-			  padding: 0.6rem 0.8rem;
-			  font-family: SFMono-Regular, Menlo, Consolas, "Liberation Mono", Courier, monospace;
-			  font-size: 0.9rem;
-			  margin: 0.5rem 0 1rem;
-			  color: #c9d1d9;                  /* light text on dark bg */
-			  position: relative;
-			  cursor: pointer;
-			  user-select: all;
-			  overflow-wrap: break-word;
-			  word-break: break-all;
-			}
-			.mc-copy-snippet .copy-icon {
-			  margin-left: 0.4rem;
-			  font-size: 1rem;
-			  opacity: 0.6;
-			  transition: opacity 0.2s;
-			  color: #8b949e;                  /* GitHub icon gray */
-			}
-			.mc-copy-snippet:hover .copy-icon {
-			  opacity: 1;
-			}
-
-			/* Prevent scrolling when modal is open */
-			body.modal-open {
-			  overflow: hidden;
-			}
-
-			/* Responsive Adjustments for Modals */
-			@media (max-width: 600px) {
-			  .modal-content {
-			    width: 95vw;
-			    padding: 16px;
-			  }
-
-			  .modal-content iframe {
-			    width: 100% !important;
-			    height: 500px !important;
-			  }
-
-			  .modal-close {
-			    font-size: 1.5rem;
-			    top: 10px;
-			    right: 10px;
-			  }
-
-			  .mc-copy-snippet {
-			    font-size: 13px;
-			    padding: 10px;
-			  }
-			}
-		</style>
-	</head>
-
-	<body>
-		<!-- Loader -->
-		<div id="loader">
-			<div class="spinner"></div>
-		</div>
-
-		<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
-			<i class="bi bi-circle-half"></i>
-		</button>
-
-		<nav role="navigation" aria-label="Main Navigation">
-			<a href="#" class="logo">ASCE | CCSU</a>
-			<a class="join-button" href="https://clubcentral.ccsu.edu/organization/americansocietyofcivilengineers" target="_blank" rel="noopener noreferrer">
-				Join
-			</a>
-		</nav>
-
-		<header class="hero">
-			<h1>
-				<span class="typed" id="typed-text"></span>
-			</h1>
-			<p class="sub">Building the Future, One Experience at a Time.</p>
-		</header>
-
-		<section class="features">
-			<div class="feature">
-				<h3>Networking</h3>
-				<p>
-					Connect with industry professionals and like-minded peers to grow your civil engineering network and build lasting professional relationships.
-				</p>
-			</div>
-			<div class="feature">
-				<h3>Hands-on</h3>
-				<p>
-					Gain practical experience with design challenges, technical workshops, and construction projects that bring classroom concepts to life.
-				</p>
-			</div>
-			<div class="feature">
-				<h3>Engineering Excursions</h3>
-				<p>
-					Learn beyond the classroom with educational outings that develop invaluable experiences, foster camaraderie, and offer real-world exposure to civil engineering applications.
-				</p>
-			</div>
-		</section>
-
-		<section class="about">
-			<p>
-				<strong>
-					The ASCE Student Chapter at Central Connecticut State University is more than a club<br />
-					— A hub for collaboration, professional growth, and learning beyond the classroom.
-				</strong>
-			</p>
-		</section>
-
-		<section class="follow-instagram">
-			<h2 class="follow-title">Connect &amp; Explore With Us</h2>
-			<div class="insta-linktree-wrapper">
-				<!-- Linktree Card -->
-				<a href="https://linktr.ee/asce.ccsu" target="_blank" rel="noopener noreferrer" class="linktree-og-card">
-					<div class="og-img">
-						<img src="/media/linktree_og.png" alt="Linktree OG ASCE CCSU" />
-						<div class="divider-line"></div>
-					</div>
-					<div class="og-text">
-						<h4>ASCE | CCSU on Linktree</h4>
-						<p>Find all our links in one place — events, socials, and more.</p>
-						<span class="og-url">linktr.ee/asce.ccsu</span>
-					</div>
-				</a>
-
-				<!-- Instagram Embed -->
-				<iframe src="https://www.instagram.com/asce.ccsu/embed" width="320" height="440" frameborder="0" scrolling="no" allowtransparency="true" loading="lazy"></iframe>
-
-				<!-- Minecraft Server Card -->
-				<a href="#" class="mc-card" id="mc-card">
-					<div class="mc-card-top">
-						<div class="mc-header">
-							<i class="bi bi-tools"></i> Build Together!
-							<i class="bi bi-trident"></i>
-						</div>
-						<div class="status-row">
-							<div class="status-item">
-								<div class="dot" id="java-dot"></div>
-								<span>Java</span>
-							</div>
-							<div class="status-item">
-								<div class="dot" id="bedrock-dot"></div>
-								<span>Bedrock</span>
-							</div>
-						</div>
-						<div id="mc-players" class="mc-players">Players: – / –</div>
-						<div id="mc-version" class="mc-version">Version: –</div>
-					</div>
-					<div class="divider-line"></div>
-					<div class="mc-text">
-						<h4>ASCE | CCSU Minecraft Server</h4>
-						<p>Peaceful Mode • Cross-Platform</p>
-						<span class="og-url">asce.shockbyte.rocks | Bedrock Port 4252</span>
-					</div>
-				</a>
-			</div>
-		</section>
-
-		<!-- Modal for Minecraft -->
-		<div id="mc-modal" class="modal-overlay">
-			<div class="modal-content">
-				<button class="modal-close" id="mc-close-button" aria-label="Close Modal">
-					&times;
-				</button>
-				<h4>ASCE | CCSU Minecraft</h4>
-
-				<!-- Include status dots inside modal -->
-				<div class="mc-status-row">
-					<div class="mc-status-item">
-						<div class="dot" id="modal-java-dot"></div>
-						<span>Java</span>
-					</div>
-					<div class="mc-status-item">
-						<div class="dot" id="modal-bedrock-dot"></div>
-						<span>Bedrock</span>
-					</div>
-				</div>
-
-				<p><strong>Server:</strong></p>
-				<code class="mc-copy-snippet" data-copy="asce.shockbyte.rocks">
-					asce.shockbyte.rocks
-					<i class="bi bi-clipboard copy-icon"></i>
-				</code>
-
-				<p><strong>Bedrock Port:</strong></p>
-				<code class="mc-copy-snippet" data-copy="4252">
-					4252
-					<i class="bi bi-clipboard copy-icon"></i>
-				</code>
-
-				<p><strong>Version:</strong> <span id="modal-version">–</span></p>
-
-				<p><strong>Server Message:</strong></p>
-				<div id="modal-motd" class="modal-motd">Loading MOTD…</div>
-
-				<p><strong>Game Mode:</strong> Peaceful</p>
-				<p><strong>Cross-Platform:</strong> Java &amp; Bedrock</p>
-
-				<!-- Button to open Tally modal -->
-				<button id="open-tally-button" class="whitelist-button">
-					Join Whitelist
-				</button>
-			</div>
-		</div>
-
-		<!-- Tally Modal (initially hidden) -->
-		<div id="tally-modal" class="modal-overlay">
-			<div class="modal-content">
-				<!-- Close button -->
-				<button class="modal-close" id="tally-close-button" aria-label="Close Tally Form">
-					&times;
-				</button>
-
-				<!-- Embedded Tally form -->
-				<iframe
-					src="https://tally.so/embed/3XvlRz?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-					width="100%"
-					height="600"
-					frameborder="0"
-					marginheight="0"
-					marginwidth="0"
-					title="Tally Form"
-					style="border: none; border-radius: 6px;"
-				></iframe>
-			</div>
-		</div>
-
-		<footer>
-			<div class="footer-divider"></div>
-			<div class="footer-icons">
-				<a href="https://www.instagram.com/asce.ccsu" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
-				<a href="https://clubcentral.ccsu.edu/organization/americansocietyofcivilengineers" target="_blank" rel="noopener noreferrer"><i class="bi bi-c-square-fill"></i></a>
-				<a href="https://linktr.ee/asce.ccsu" target="_blank" rel="noopener noreferrer"><i class="bi bi-tree-fill"></i></a>
-				<a href="https://www.linkedin.com/company/asce-ccsu" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></a>
-				<a href="https://github.com/ASCECCSU" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
-			</div>
-
-			<div class="footer-note">© <span id="year"></span> ASCE Central Connecticut State University Student Chapter</div>
-			<div class="footer-small">
-				<a href="https://ccsubluesteelsteelbridge.weebly.com" target="_blank" rel="noopener noreferrer">
-					Blue Steel Bridge 2018 Archive
-				</a>
-			</div>
-
-			<div class="footer-credit">
-				<span>
-					<a href="https://github.com/asceccsu/asceccsu.github.io/commits/v25.06.05" id="version-link" target="_blank" style="color: #ffffff; text-decoration: none">
-						<span id="version-date">v25.06.05</span>
-					</a>
-					| Design by
-					<a href="https://linkedin.com/in/asalehengineer" target="_blank" style="color: #ffffff; text-decoration: none">
-						A. Saleh
-					</a>
-				</span>
-			</div>
-		</footer>
-
-		<script>
-			// ■■■ Hostname & iframe protection ■■■
-			// Prevent embedding in an iframe:
-			if (window.top !== window.self) {
-			  window.top.location = window.self.location;
-			}
-			// Redirect if not on asceccsu.github.io:
-			if (window.location.hostname !== "asceccsu.github.io") {
-			  window.location.href =
-			    "https://asceccsu.github.io" +
-			    window.location.pathname +
-			    window.location.search;
-			}
-
-			// Typing animation
-			const phrases = [
-			  "Learning beyond the classroom.",
-			  "Engineering excursions and beyond-campus learning.",
-			  "Real-world exposure to civil engineering applications.",
-			  "Grow with ASCE CCSU.",
-			  "Design. Build. Inspire.",
-			  "Future-ready through fieldwork.",
-			  "Where Central's future engineers unite.",
-			  "Explore infrastructure up close.",
-			  "Bridging theory and practice.",
-			  "Discover, design, deliver.",
-			  "Build your career foundation.",
-			  "Innovation through collaboration.",
-			  "Promoting leadership in engineering.",
-			  "Connect. Construct. Contribute.",
-			  "Building bridges, in more ways than one.",
-			  "Invaluable experiences make excelling engineers.",
-			  "Build, learn, and develop at Central's premier Civil Engineering club.",
-			];
-			let fullPhrases = [
-			  "Connecting future civil engineers at Central.",
-			  ...shuffle(phrases),
-			];
-			let history = ["Connecting future civil engineers at Central."];
-			let i = 0,
-			  j = 0,
-			  isDeleting = false;
-			const speed = 110,
-			  pause = 2500;
-			const target = document.getElementById("typed-text");
-
-			function shuffle(array) {
-			  const arr = array.slice();
-			  for (let k = arr.length - 1; k > 0; k--) {
-			    const m = Math.floor(Math.random() * (k + 1));
-			    [arr[k], arr[m]] = [arr[m], arr[k]];
-			  }
-			  return arr;
-			}
-
-			function type() {
-			  const p = fullPhrases[i];
-			  const maxChars = window.innerWidth < 600 ? 38 : 60;
-			  target.style.fontSize = p.length > maxChars ? "1.5rem" : "";
-			  target.textContent = p.substring(0, j);
-
-			  if (!isDeleting && j === p.length) {
-			    isDeleting = true;
-			    setTimeout(type, pause);
-			  } else if (isDeleting && j === 0) {
-			    isDeleting = false;
-			    do {
-			      i = (i + 1) % fullPhrases.length;
-			    } while (history.slice(-5).includes(fullPhrases[i]));
-			    history.push(fullPhrases[i]);
-			    setTimeout(type, 400);
-			  } else {
-			    j += isDeleting ? -1 : 1;
-			    setTimeout(type, isDeleting ? speed / 2 : speed);
-			  }
-			}
-			type();
-
-			// Theme toggle: Blue → Dark → Light → Blue
-			function toggleTheme() {
-			  const html = document.documentElement;
-			  const current = html.getAttribute("data-theme");
-			  const next =
-			    current === "blue" ? "dark" : current === "dark" ? "light" : "blue";
-			  html.setAttribute("data-theme", next);
-			  localStorage.setItem("theme", next);
-			}
-
-			window.addEventListener("DOMContentLoaded", () => {
-			  const saved = localStorage.getItem("theme");
-			  if (saved) {
-			    document.documentElement.setAttribute("data-theme", saved);
-			  }
-			  document.getElementById("year").textContent = new Date().getFullYear();
-
-			  // Hide loader once loaded
-			  window.addEventListener("load", () => {
-			    const loader = document.getElementById("loader");
-			    if (loader) {
-			      loader.style.display = "none";
-			    }
-			  });
-
-			  // Fetch Java and Bedrock statuses, MOTD, players, and version
-			  Promise.all([
-			    fetch("https://api.mcsrvstat.us/3/asce.shockbyte.rocks", {
-			      headers: { "User-Agent": "ASCE-CCSU-Website/1.0" },
-			    }).then((r) => r.json()),
-			    fetch(
-			      "https://api.mcsrvstat.us/bedrock/3/asce.shockbyte.rocks:4252",
-			      {
-			        headers: { "User-Agent": "ASCE-CCSU-Website/1.0" },
-			      },
-			    ).then((r) => r.json()),
-			  ])
-			    .then(([javaData, bedrockData]) => {
-			      // Update card dots
-			      const javaCardDot = document.getElementById("java-dot");
-			      javaCardDot.classList.toggle("online", javaData.online);
-			      const bedrockCardDot = document.getElementById("bedrock-dot");
-			      bedrockCardDot.classList.toggle("online", bedrockData.online);
-
-			      // Update modal dots
-			      const javaModalDot = document.getElementById("modal-java-dot");
-			      javaModalDot.classList.toggle("online", javaData.online);
-			      const bedrockModalDot =
-			        document.getElementById("modal-bedrock-dot");
-			      bedrockModalDot.classList.toggle("online", bedrockData.online);
-
-			      // Players info
-			      const players =
-			        javaData.players && typeof javaData.players.online === "number"
-			          ? `${javaData.players.online} / ${javaData.players.max}`
-			          : "– / –";
-
-			      // Version
-			      let version = "Unknown";
-			      if (typeof javaData.version === "string") {
-			        version = javaData.version;
-			      } else if (javaData.version && javaData.version.name) {
-			        version = javaData.version.name;
-			      }
-
-			      // MOTD
-			      const motdHtmlArr = javaData.motd && javaData.motd.html;
-			      const motdHtml =
-			        motdHtmlArr && motdHtmlArr.length
-			          ? motdHtmlArr.join("<br>")
-			          : "<span style='color: #ffffff'>No MOTD</span>";
-
-			      document.getElementById("mc-players").textContent =
-			        "Players: " + players;
-			      document.getElementById("mc-version").textContent =
-			        "Version: " + version;
-
-			      document.getElementById("modal-motd").innerHTML = motdHtml;
-			      document.getElementById("modal-version").textContent = version;
-			    })
-			    .catch(() => {
-			      document.getElementById("java-dot").classList.remove("online");
-			      document.getElementById("bedrock-dot").classList.remove("online");
-			      document
-			        .getElementById("modal-java-dot")
-			        .classList.remove("online");
-			      document
-			        .getElementById("modal-bedrock-dot")
-			        .classList.remove("online");
-			      document.getElementById("mc-players").textContent = "";
-			      document.getElementById("mc-version").textContent = "";
-			      document.getElementById("modal-motd").innerHTML =
-			        "<span style='color: #ff5555'>Unable to fetch server info</span>";
-			      document.getElementById("modal-version").textContent = "";
-			    });
-
-			  // Modal functionality for Minecraft
-			  const mcButton = document.getElementById("mc-card");
-			  const mcModal = document.getElementById("mc-modal");
-			  const mcClose = document.getElementById("mc-close-button");
-
-			  mcButton.addEventListener("click", (e) => {
-			    e.preventDefault();
-			    document.body.classList.add("modal-open");
-			    mcModal.style.display = "flex";
-			  });
-			  mcClose.addEventListener("click", () => {
-			    document.body.classList.remove("modal-open");
-			    mcModal.style.display = "none";
-			  });
-			  window.addEventListener("click", (e) => {
-			    if (e.target === mcModal) {
-			      document.body.classList.remove("modal-open");
-			      mcModal.style.display = "none";
-			    }
-			  });
-
-			  // Copy-to-clipboard logic for all .mc-copy-snippet elements
-			  document.querySelectorAll(".mc-copy-snippet").forEach((codeEl) => {
-			    codeEl.addEventListener("click", () => {
-			      const textToCopy = codeEl.getAttribute("data-copy");
-			      navigator.clipboard.writeText(textToCopy).then(() => {
-			        const tooltip = document.createElement("span");
-			        tooltip.textContent = "Copied!";
-			        tooltip.style.position = "absolute";
-			        tooltip.style.top = "-1.6rem";
-			        tooltip.style.right = "0";
-			        tooltip.style.background = "rgba(0,0,0,0.75)";
-			        tooltip.style.color = "white";
-			        tooltip.style.padding = "0.2rem 0.4rem";
-			        tooltip.style.fontSize = "0.75rem";
-			        tooltip.style.borderRadius = "4px";
-			        tooltip.style.pointerEvents = "none";
-			        codeEl.appendChild(tooltip);
-
-			        setTimeout(() => {
-			          codeEl.removeChild(tooltip);
-			        }, 1200);
-			      });
-			    });
-			  });
-
-			  // Tally modal functionality
-			  const openTallyBtn = document.getElementById("open-tally-button");
-			  const tallyModal = document.getElementById("tally-modal");
-			  const tallyClose = document.getElementById("tally-close-button");
-
-			  openTallyBtn.addEventListener("click", (e) => {
-			    e.preventDefault();
-			    document.body.classList.add("modal-open");
-			    tallyModal.style.display = "flex";
-			  });
-
-			  tallyClose.addEventListener("click", () => {
-			    document.body.classList.remove("modal-open");
-			    tallyModal.style.display = "none";
-			  });
-
-			  window.addEventListener("click", (e) => {
-			    if (e.target === tallyModal) {
-			      document.body.classList.remove("modal-open");
-			      tallyModal.style.display = "none";
-			    }
-			  });
-
-			  // ASCE ASCII Easter Egg : )
-			  console.log(`
-			                        +++++++++                 ++++++++++++              +++++++++++++ ++++++++++++++++++
-			                       +++++++++++             ++++++++++++++++++        +++++++++++++++++++++++++++++++++++
-			                      +++++++++++++           ++++++++++++++++++      +++++++++++++++++++ ++++++++++++++++++
-			                     ++++++++++++++          ++++++++++++++++++      +++++++++++++++++++  ++++++++++++++++++
-			                    ++++++++++++++++        ++++++++++      ++      +++++++++++++++++++   +++++++++
-			                    +++++++++++++++++       ++++++++++             ++++++++++             +++++++++
-			                   +++++++++++++++++++      +++++++++++++++       ++++++++++              ++++++++++++++++++
-			                  ++++++++++ +++++++++       +++++++++++++++++++  +++++++++               ++++++++++++++++++
-			                  +++++++++   +++++++++        ++++++++++++++++++ +++++++++               ++++++++++++++++++
-			                 +++++++++     +++++++++         ++++++++++++++++++++++++++               ++++++++++++++++++
-			            +++++++++++++++++++++++++++++              +++++++++++++++++++++              +++++++++
-			               ++++++++++++++++++++++++++      +         +++++++++++++++++++++            +++++++++
-			            +      +++++++++++++++++++++++   ++++++     ++++++++++  +++++++++++++++++++   ++++++++++++++++++
-			            +++++++++++++++++++++++++++++++ ++++++++++++++++++++++   +++++++++++++++++++  ++++++++++++++++++
-			             ++++++++++           +++++++++++++++++++++++++++++++      ++++++++++++++++++ ++++++++++++++++++
-			            ++++++++++             +++++++++ ++++++++++++++++++          +++++++++++++++++++++++++++++++++++
-			            +++++++++               ++++++++     +++++++++++                 +++++++++++  ++++++++++++++++++
-			  `);
-			});
-		</script>
-		<!-- Cloudflare Web Analytics -->
-		<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6628e66f0b2041179298e8092552f5b9"}'></script>
-		<!-- End Cloudflare Web Analytics -->
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="robots"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      name="googlebot"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      name="bingbot"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      name="DuckDuckBot"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      name="Slurp"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      name="baiduspider"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      name="yandex"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      name="facebookexternalhit"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      name="twitterbot"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      name="Slackbot-LinkExpanding"
+      content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache, notranslate"
+    />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+
+    <title>ASCE | CCSU</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <style>
+      :root {
+        --asce-blue: #005daa;
+        --light-bg: #ffffff;
+        --light-text: #005daa;
+        --dark-bg: #000000;
+        --dark-text: #ffffff;
+        --og-primary: #012f51;
+        --green-dot: #55ff55;
+        --red-dot: #ff5555;
+      }
+
+      [data-theme="light"] {
+        --bg: var(--light-bg);
+        --text: var(--light-text);
+        --footer-bg: var(--asce-blue);
+        --border-color: var(--light-text);
+      }
+      [data-theme="dark"] {
+        --bg: var(--dark-bg);
+        --text: var(--dark-text);
+        --footer-bg: #000000;
+        --border-color: white;
+      }
+      [data-theme="blue"] {
+        --bg: var(--asce-blue);
+        --text: #ffffff;
+        --footer-bg: var(--asce-blue);
+        --border-color: white;
+      }
+
+      html,
+      body {
+        font-family:
+          "SF Pro Display", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        margin: 0;
+        padding: 0;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      /* Loader */
+      #loader {
+        position: fixed;
+        inset: 0;
+        background-color: var(--bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+      .spinner {
+        border: 8px solid rgba(255, 255, 255, 0.3);
+        border-top: 8px solid var(--text);
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      nav {
+        padding: 1.5rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: auto;
+      }
+      .logo {
+        font-size: 1.7rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--text);
+        letter-spacing: -0.5px;
+      }
+      .join-button {
+        padding: 0.6rem 1.5rem;
+        background-color: var(--text);
+        color: var(--bg);
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 500;
+        text-decoration: none;
+      }
+
+      .theme-toggle {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background: var(--footer-bg);
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      header.hero {
+        text-align: center;
+        padding: 5rem 2rem 3rem;
+      }
+      .hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        min-height: 11rem;
+        line-height: 1.4;
+        max-width: 900px;
+        margin: auto;
+      }
+      .typed {
+        display: inline-block;
+        border-right: 2px solid var(--text);
+        animation: blink 0.8s step-end infinite;
+      }
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+      .hero p.sub {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+        opacity: 0.85;
+      }
+
+      .features {
+        max-width: 1000px;
+        margin: 4rem auto 3rem;
+        padding: 0 1.5rem;
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .feature {
+        flex: 1 1 280px;
+        max-width: 320px;
+        background: var(--bg);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+        color: var(--text);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      .feature h3 {
+        font-size: 1.3rem;
+        margin-bottom: 0.75rem;
+      }
+      .feature p {
+        font-size: 1rem;
+        line-height: 1.5;
+        flex-grow: 1;
+      }
+
+      .about,
+      .follow-instagram {
+        background-color: var(--bg);
+        color: white !important;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+      }
+      [data-theme="light"] .about,
+      [data-theme="light"] .follow-instagram {
+        background-color: var(--asce-blue);
+        color: white !important;
+      }
+      .about p {
+        font-size: 1.12rem;
+        max-width: 800px;
+        margin: auto;
+        color: white !important;
+      }
+      .follow-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        padding: 0 1rem;
+      }
+
+      .insta-linktree-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .insta-linktree-wrapper iframe,
+      .insta-linktree-wrapper .linktree-og-card,
+      .insta-linktree-wrapper .mc-card {
+        border-radius: 12px;
+        overflow: hidden;
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+      .insta-linktree-wrapper iframe:hover,
+      .insta-linktree-wrapper .linktree-og-card:hover,
+      .insta-linktree-wrapper .mc-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      }
+
+      .linktree-og-card,
+      .mc-card {
+        width: 320px;
+        height: 440px;
+        border-radius: 12px;
+        overflow: hidden;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--og-primary);
+        color: white;
+      }
+      .linktree-og-card .og-img img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+      .linktree-og-card .divider-line,
+      .mc-card .divider-line {
+        height: 2px;
+        background: white;
+        width: 100%;
+      }
+      .linktree-og-card .og-text,
+      .mc-card .og-text {
+        flex: 1;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        background-color: var(--og-primary);
+        color: white;
+      }
+      .linktree-og-card h4,
+      .mc-card h4 {
+        margin: 0 0 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+      .linktree-og-card p,
+      .mc-card p {
+        margin: 0 0 0.5rem;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        opacity: 0.9;
+      }
+      .linktree-og-card .og-url,
+      .mc-card .og-url {
+        font-size: 0.75rem;
+        opacity: 0.7;
+      }
+
+      /* Minecraft-specific */
+      .mc-card-top {
+        background: var(--og-primary);
+        color: #ffffff;
+        font-family: monospace;
+        padding: 1rem;
+        height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+      .mc-card-top .mc-header {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      .mc-card-top .status-row {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 0.5rem 0;
+        font-size: 0.8rem;
+      }
+      .mc-card-top .status-item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+      .mc-card-top .dot {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background: var(--red-dot);
+      }
+      .mc-card-top .dot.online {
+        background: var(--green-dot);
+      }
+      .mc-card-top .mc-players,
+      .mc-card-top .mc-version {
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+      }
+      .mc-card-top .small-note {
+        font-size: 0.7rem;
+        opacity: 0.85;
+        margin-top: 0.3rem;
+      }
+      .mc-text {
+        flex: 1;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+        background-color: var(--og-primary);
+        color: white;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--footer-bg);
+        color: white;
+        text-align: center;
+        padding: 4rem 1rem 2rem;
+        position: relative;
+      }
+      .footer-divider {
+        height: 4px;
+        background: white;
+        width: 100%;
+        margin-bottom: 2rem;
+        margin-top: -2rem;
+      }
+      .footer-icons {
+        margin-bottom: 1.2rem;
+        font-size: 2rem;
+      }
+      .footer-icons a {
+        color: white;
+        margin: 0 0.8rem;
+      }
+      .footer-note {
+        font-size: 0.8rem;
+        opacity: 0.75;
+      }
+      .footer-credit {
+        font-size: 0.5rem;
+        opacity: 0.5;
+        margin-top: 0.2rem;
+      }
+      .footer-small a {
+        font-size: 0.6rem; /* slightly larger */
+        opacity: 0.4;
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      @media (max-width: 768px) {
+        .features {
+          flex-direction: column;
+          align-items: center;
+          padding: 0 1rem;
+          gap: 1.5rem;
+        }
+        .feature {
+          width: 100%;
+          max-width: 360px;
+          margin: 0 auto;
+        }
+        .hero h1 {
+          font-size: 2rem;
+          min-height: 9rem;
+        }
+        .about p {
+          font-size: 1.1rem;
+        }
+        .follow-title {
+          font-size: 1.4rem;
+          margin-bottom: 1rem;
+          max-width: 100%;
+        }
+        .insta-linktree-wrapper {
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+        }
+      }
+
+      /* Modal */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        margin-bottom: 1rem;
+      }
+      .modal-content {
+        background-color: var(--og-primary);
+        color: #ffffff;
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        position: relative;
+        font-size: 0.95rem;
+      }
+      .modal-content h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        text-align: center;
+        color: #ffffff;
+      }
+      .modal-content p {
+        margin: 0.75rem 0;
+        line-height: 1.4;
+        color: #ffffff;
+      }
+      .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #ffffff;
+        padding: 1rem 1rem 1rem;
+      }
+      .modal-motd {
+        background: #000000;
+        color: #ffffff;
+        font-family: monospace;
+        padding: 1rem;
+        border-radius: 8px;
+        white-space: pre-wrap;
+        margin: 0.75rem 0 1.5rem;
+        font-size: 0.9rem;
+        line-height: 1.3;
+      }
+      .mc-status-row {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.9rem;
+      }
+      .mc-status-item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+      .mc-status-item .dot {
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        background: var(--red-dot);
+      }
+      .mc-status-item .dot.online {
+        background: var(--green-dot);
+      }
+      .whitelist-button {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.6rem 1.2rem;
+        background-color: #ffffff;
+        color: var(--og-primary);
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 0.95rem;
+        cursor: pointer;
+      }
+      .whitelist-button:hover {
+        opacity: 0.9;
+      }
+
+      /* Prevent scrolling when modal is open */
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      /* ----------------------------- */
+      /* Minecraft-modal code snippets */
+      /* ----------------------------- */
+      .mc-copy-snippet {
+        display: block;
+        background-color: #0d1117; /* GitHub dark background */
+        border: 1px solid #30363d; /* GitHub dark border */
+        border-radius: 6px;
+        padding: 0.6rem 0.8rem;
+        font-family:
+          SFMono-Regular, Menlo, Consolas, "Liberation Mono", Courier, monospace;
+        font-size: 0.9rem;
+        margin: 0.5rem 0 1rem;
+        color: #c9d1d9; /* light text on dark bg */
+        position: relative;
+        cursor: pointer;
+        user-select: all;
+        overflow-wrap: break-word;
+        word-break: break-all;
+      }
+      .mc-copy-snippet .copy-icon {
+        margin-left: 0.4rem;
+        font-size: 1rem;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+        color: #8b949e; /* GitHub icon gray */
+      }
+      .mc-copy-snippet:hover .copy-icon {
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Loader -->
+    <div id="loader">
+      <div class="spinner"></div>
+    </div>
+
+    <button
+      class="theme-toggle"
+      onclick="toggleTheme()"
+      aria-label="Toggle Theme"
+    >
+      <i class="bi bi-circle-half"></i>
+    </button>
+
+    <nav role="navigation" aria-label="Main Navigation">
+      <a href="#" class="logo">ASCE | CCSU</a>
+      <a
+        class="join-button"
+        href="https://clubcentral.ccsu.edu/organization/americansocietyofcivilengineers"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Join
+      </a>
+    </nav>
+
+    <header class="hero">
+      <h1>
+        <span class="typed" id="typed-text"></span>
+      </h1>
+      <p class="sub">Building the Future, One Experience at a Time.</p>
+    </header>
+
+    <section class="features">
+      <div class="feature">
+        <h3>Networking</h3>
+        <p>
+          Connect with industry professionals and like-minded peers to grow your
+          civil engineering network and build lasting professional
+          relationships.
+        </p>
+      </div>
+      <div class="feature">
+        <h3>Hands-on</h3>
+        <p>
+          Gain practical experience with design challenges, technical workshops,
+          and construction projects that bring classroom concepts to life.
+        </p>
+      </div>
+      <div class="feature">
+        <h3>Engineering Excursions</h3>
+        <p>
+          Learn beyond the classroom with educational outings that develop
+          invaluable experiences, foster camaraderie, and offer real-world
+          exposure to civil engineering applications.
+        </p>
+      </div>
+    </section>
+
+    <section class="about">
+      <p>
+        <strong>
+          The ASCE Student Chapter at Central Connecticut State University is
+          more than a club<br />
+          — A hub for collaboration, professional growth, and learning beyond
+          the classroom.
+        </strong>
+      </p>
+    </section>
+
+    <section class="follow-instagram">
+      <h2 class="follow-title">Connect &amp; Explore With Us</h2>
+      <div class="insta-linktree-wrapper">
+        <!-- Linktree Card -->
+        <a
+          href="https://linktr.ee/asce.ccsu"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="linktree-og-card"
+        >
+          <div class="og-img">
+            <img src="/media/linktree_og.png" alt="Linktree OG ASCE CCSU" />
+            <div class="divider-line"></div>
+          </div>
+          <div class="og-text">
+            <h4>ASCE | CCSU on Linktree</h4>
+            <p>Find all our links in one place — events, socials, and more.</p>
+            <span class="og-url">linktr.ee/asce.ccsu</span>
+          </div>
+        </a>
+
+        <!-- Instagram Embed -->
+        <iframe
+          src="https://www.instagram.com/asce.ccsu/embed"
+          width="320"
+          height="440"
+          frameborder="0"
+          scrolling="no"
+          allowtransparency="true"
+          loading="lazy"
+        ></iframe>
+
+        <!-- Minecraft Server Card -->
+        <a href="#" class="mc-card" id="mc-card">
+          <div class="mc-card-top">
+            <div class="mc-header">
+              <i class="bi bi-tools"></i> Build Together!
+              <i class="bi bi-trident"></i>
+            </div>
+            <div class="status-row">
+              <div class="status-item">
+                <div class="dot" id="java-dot"></div>
+                <span>Java</span>
+              </div>
+              <div class="status-item">
+                <div class="dot" id="bedrock-dot"></div>
+                <span>Bedrock</span>
+              </div>
+            </div>
+            <div id="mc-players" class="mc-players">Players: – / –</div>
+            <div id="mc-version" class="mc-version">Version: –</div>
+          </div>
+          <div class="divider-line"></div>
+          <div class="mc-text">
+            <h4>ASCE | CCSU Minecraft Server</h4>
+            <p>Peaceful Mode • Cross-Platform</p>
+            <span class="og-url">asce.shockbyte.rocks | Bedrock Port 4252</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Modal for Minecraft -->
+    <div id="mc-modal" class="modal-overlay">
+      <div class="modal-content">
+        <button
+          class="modal-close"
+          id="mc-close-button"
+          aria-label="Close Modal"
+        >
+          &times;
+        </button>
+        <h3>ASCE | CCSU Minecraft</h3>
+
+        <!-- Include status dots inside modal -->
+        <div class="mc-status-row">
+          <div class="mc-status-item">
+            <div class="dot" id="modal-java-dot"></div>
+            <span>Java</span>
+          </div>
+          <div class="mc-status-item">
+            <div class="dot" id="modal-bedrock-dot"></div>
+            <span>Bedrock</span>
+          </div>
+        </div>
+
+        <p><strong>Server:</strong></p>
+        <code class="mc-copy-snippet" data-copy="asce.shockbyte.rocks">
+          asce.shockbyte.rocks
+          <i class="bi bi-clipboard copy-icon"></i>
+        </code>
+
+        <p><strong>Bedrock Port:</strong></p>
+        <code class="mc-copy-snippet" data-copy="4252">
+          4252
+          <i class="bi bi-clipboard copy-icon"></i>
+        </code>
+
+        <p><strong>Version:</strong> <span id="modal-version">–</span></p>
+
+        <p><strong>Server Message:</strong></p>
+        <div id="modal-motd" class="modal-motd">Loading MOTD…</div>
+
+        <p><strong>Game Mode:</strong> Peaceful</p>
+        <p><strong>Cross-Platform:</strong> Java &amp; Bedrock</p>
+
+        <!-- Button to open Tally modal -->
+        <button id="open-tally-button" class="whitelist-button">
+          Join Whitelist
+        </button>
+      </div>
+    </div>
+
+    <!-- Tally Modal (initially hidden) -->
+    <div id="tally-modal" class="modal-overlay">
+      <div
+        class="modal-content"
+        style="max-width: 500px; width: 95%; padding: 1rem"
+      >
+        <button
+          class="modal-close"
+          id="tally-close-button"
+          aria-label="Close Tally Form"
+          style="
+            color: #ffffff;
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            font-size: 2.2rem;
+          "
+        >
+          &times;
+        </button>
+        <iframe
+          src="https://tally.so/embed/3XvlRz?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          width="100%"
+          height="600"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          style="border: none; border-radius: 6px"
+        ></iframe>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-divider"></div>
+      <div class="footer-icons">
+        <a
+          href="https://www.instagram.com/asce.ccsu"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="bi bi-instagram"></i
+        ></a>
+        <a
+          href="https://clubcentral.ccsu.edu/organization/americansocietyofcivilengineers"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="bi bi-c-square-fill"></i
+        ></a>
+        <a
+          href="https://linktr.ee/asce.ccsu"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="bi bi-tree-fill"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/company/asce-ccsu"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="bi bi-linkedin"></i
+        ></a>
+        <a
+          href="https://github.com/ASCECCSU"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><i class="bi bi-github"></i
+        ></a>
+      </div>
+
+      <div class="footer-note">
+        © <span id="year"></span> ASCE Central Connecticut State University
+        Student Chapter
+      </div>
+      <div class="footer-small">
+        <a
+          href="https://ccsubluesteelsteelbridge.weebly.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Blue Steel Bridge 2018 Archive
+        </a>
+      </div>
+
+      <div class="footer-credit">
+        <span>
+          <a
+            href="https://github.com/asceccsu/asceccsu.github.io/commits/v25.06.05"
+            id="version-link"
+            target="_blank"
+            style="color: #ffffff; text-decoration: none"
+          >
+            <span id="version-date">v25.06.05</span>
+          </a>
+          | Design by
+          <a
+            href="https://linkedin.com/in/asalehengineer"
+            target="_blank"
+            style="color: #ffffff; text-decoration: none"
+          >
+            A. Saleh
+          </a>
+        </span>
+      </div>
+    </footer>
+
+    <script>
+      // ■■■ Hostname & iframe protection ■■■
+      // Prevent embedding in an iframe:
+      if (window.top == window.self) {
+        window.top.location = window.self.location;
+      }
+      // Redirect if not on asceccsu.github.io:
+      if (window.location.hostname == "asceccsu.github.io") {
+        window.location.href =
+          "https://asceccsu.github.io" +
+          window.location.pathname +
+          window.location.search;
+      }
+
+      // Typing animation
+      const phrases = [
+        "Learning beyond the classroom.",
+        "Engineering excursions and beyond-campus learning.",
+        "Real-world exposure to civil engineering applications.",
+        "Grow with ASCE CCSU.",
+        "Design. Build. Inspire.",
+        "Future-ready through fieldwork.",
+        "Where Central's future engineers unite.",
+        "Explore infrastructure up close.",
+        "Bridging theory and practice.",
+        "Discover, design, deliver.",
+        "Build your career foundation.",
+        "Innovation through collaboration.",
+        "Promoting leadership in engineering.",
+        "Connect. Construct. Contribute.",
+        "Building bridges, in more ways than one.",
+        "Invaluable experiences make excelling engineers.",
+        "Build, learn, and develop at Central's premier Civil Engineering club.",
+      ];
+      let fullPhrases = [
+        "Connecting future civil engineers at Central.",
+        ...shuffle(phrases),
+      ];
+      let history = ["Connecting future civil engineers at Central."];
+      let i = 0,
+        j = 0,
+        isDeleting = false;
+      const speed = 110,
+        pause = 2500;
+      const target = document.getElementById("typed-text");
+
+      function shuffle(array) {
+        const arr = array.slice();
+        for (let k = arr.length - 1; k > 0; k--) {
+          const m = Math.floor(Math.random() * (k + 1));
+          [arr[k], arr[m]] = [arr[m], arr[k]];
+        }
+        return arr;
+      }
+
+      function type() {
+        const p = fullPhrases[i];
+        const maxChars = window.innerWidth < 600 ? 38 : 60;
+        target.style.fontSize = p.length > maxChars ? "1.5rem" : "";
+        target.textContent = p.substring(0, j);
+
+        if (!isDeleting && j === p.length) {
+          isDeleting = true;
+          setTimeout(type, pause);
+        } else if (isDeleting && j === 0) {
+          isDeleting = false;
+          do {
+            i = (i + 1) % fullPhrases.length;
+          } while (history.slice(-5).includes(fullPhrases[i]));
+          history.push(fullPhrases[i]);
+          setTimeout(type, 400);
+        } else {
+          j += isDeleting ? -1 : 1;
+          setTimeout(type, isDeleting ? speed / 2 : speed);
+        }
+      }
+      type();
+
+      // Theme toggle: Blue → Dark → Light → Blue
+      function toggleTheme() {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme");
+        const next =
+          current === "blue" ? "dark" : current === "dark" ? "light" : "blue";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const saved = localStorage.getItem("theme");
+        if (saved) {
+          document.documentElement.setAttribute("data-theme", saved);
+        }
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Hide loader once loaded
+        window.addEventListener("load", () => {
+          const loader = document.getElementById("loader");
+          if (loader) {
+            loader.style.display = "none";
+          }
+        });
+
+        // Fetch Java and Bedrock statuses, MOTD, players, and version
+        Promise.all([
+          fetch("https://api.mcsrvstat.us/3/asce.shockbyte.rocks", {
+            headers: { "User-Agent": "ASCE-CCSU-Website/1.0" },
+          }).then((r) => r.json()),
+          fetch(
+            "https://api.mcsrvstat.us/bedrock/3/asce.shockbyte.rocks:4252",
+            {
+              headers: { "User-Agent": "ASCE-CCSU-Website/1.0" },
+            },
+          ).then((r) => r.json()),
+        ])
+          .then(([javaData, bedrockData]) => {
+            // Update card dots
+            const javaCardDot = document.getElementById("java-dot");
+            javaCardDot.classList.toggle("online", javaData.online);
+            const bedrockCardDot = document.getElementById("bedrock-dot");
+            bedrockCardDot.classList.toggle("online", bedrockData.online);
+
+            // Update modal dots
+            const javaModalDot = document.getElementById("modal-java-dot");
+            javaModalDot.classList.toggle("online", javaData.online);
+            const bedrockModalDot =
+              document.getElementById("modal-bedrock-dot");
+            bedrockModalDot.classList.toggle("online", bedrockData.online);
+
+            // Players info
+            const players =
+              javaData.players && typeof javaData.players.online === "number"
+                ? `${javaData.players.online} / ${javaData.players.max}`
+                : "– / –";
+
+            // Version
+            let version = "Unknown";
+            if (typeof javaData.version === "string") {
+              version = javaData.version;
+            } else if (javaData.version && javaData.version.name) {
+              version = javaData.version.name;
+            }
+
+            // MOTD
+            const motdHtmlArr = javaData.motd && javaData.motd.html;
+            const motdHtml =
+              motdHtmlArr && motdHtmlArr.length
+                ? motdHtmlArr.join("<br>")
+                : "<span style='color: #ffffff'>No MOTD</span>";
+
+            document.getElementById("mc-players").textContent =
+              "Players: " + players;
+            document.getElementById("mc-version").textContent =
+              "Version: " + version;
+
+            document.getElementById("modal-motd").innerHTML = motdHtml;
+            document.getElementById("modal-version").textContent = version;
+          })
+          .catch(() => {
+            document.getElementById("java-dot").classList.remove("online");
+            document.getElementById("bedrock-dot").classList.remove("online");
+            document
+              .getElementById("modal-java-dot")
+              .classList.remove("online");
+            document
+              .getElementById("modal-bedrock-dot")
+              .classList.remove("online");
+            document.getElementById("mc-players").textContent = "";
+            document.getElementById("mc-version").textContent = "";
+            document.getElementById("modal-motd").innerHTML =
+              "<span style='color: #ff5555'>Unable to fetch server info</span>";
+            document.getElementById("modal-version").textContent = "";
+          });
+
+        // Modal functionality for Minecraft
+        const mcButton = document.getElementById("mc-card");
+        const mcModal = document.getElementById("mc-modal");
+        const mcClose = document.getElementById("mc-close-button");
+
+        mcButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.classList.add("modal-open");
+          mcModal.style.display = "flex";
+        });
+        mcClose.addEventListener("click", () => {
+          document.body.classList.remove("modal-open");
+          mcModal.style.display = "none";
+        });
+        window.addEventListener("click", (e) => {
+          if (e.target === mcModal) {
+            document.body.classList.remove("modal-open");
+            mcModal.style.display = "none";
+          }
+        });
+
+        // Copy-to-clipboard logic for all .mc-copy-snippet elements
+        document.querySelectorAll(".mc-copy-snippet").forEach((codeEl) => {
+          codeEl.addEventListener("click", () => {
+            const textToCopy = codeEl.getAttribute("data-copy");
+            navigator.clipboard.writeText(textToCopy).then(() => {
+              const tooltip = document.createElement("span");
+              tooltip.textContent = "Copied!";
+              tooltip.style.position = "absolute";
+              tooltip.style.top = "-1.6rem";
+              tooltip.style.right = "0";
+              tooltip.style.background = "rgba(0,0,0,0.75)";
+              tooltip.style.color = "white";
+              tooltip.style.padding = "0.2rem 0.4rem";
+              tooltip.style.fontSize = "0.75rem";
+              tooltip.style.borderRadius = "4px";
+              tooltip.style.pointerEvents = "none";
+              codeEl.appendChild(tooltip);
+
+              setTimeout(() => {
+                codeEl.removeChild(tooltip);
+              }, 1200);
+            });
+          });
+        });
+
+        // Tally modal functionality
+        const openTallyBtn = document.getElementById("open-tally-button");
+        const tallyModal = document.getElementById("tally-modal");
+        const tallyClose = document.getElementById("tally-close-button");
+
+        openTallyBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.classList.add("modal-open");
+          tallyModal.style.display = "flex";
+        });
+
+        tallyClose.addEventListener("click", () => {
+          document.body.classList.remove("modal-open");
+          tallyModal.style.display = "none";
+        });
+
+        window.addEventListener("click", (e) => {
+          if (e.target === tallyModal) {
+            document.body.classList.remove("modal-open");
+            tallyModal.style.display = "none";
+          }
+        });
+
+        // ASCE ASCII Easter Egg : )
+        console.log(`
+                              +++++++++                 ++++++++++++              +++++++++++++ ++++++++++++++++++                      
+                             +++++++++++             ++++++++++++++++++        +++++++++++++++++++++++++++++++++++                      
+                            +++++++++++++           ++++++++++++++++++      +++++++++++++++++++ ++++++++++++++++++                      
+                           ++++++++++++++          ++++++++++++++++++      +++++++++++++++++++  ++++++++++++++++++                      
+                          ++++++++++++++++        ++++++++++      ++      +++++++++++++++++++   +++++++++                               
+                          +++++++++++++++++       ++++++++++             ++++++++++             +++++++++                               
+                         +++++++++++++++++++      +++++++++++++++       ++++++++++              ++++++++++++++++++                      
+                        ++++++++++ +++++++++       +++++++++++++++++++  +++++++++               ++++++++++++++++++                      
+                        +++++++++   +++++++++        ++++++++++++++++++ +++++++++               ++++++++++++++++++                      
+                       +++++++++     +++++++++         ++++++++++++++++++++++++++               ++++++++++++++++++                      
+                  +++++++++++++++++++++++++++++              +++++++++++++++++++++              +++++++++                               
+                     ++++++++++++++++++++++++++      +         +++++++++++++++++++++            +++++++++                               
+                  +      +++++++++++++++++++++++   ++++++     ++++++++++  +++++++++++++++++++   ++++++++++++++++++                      
+                  +++++++++++++++++++++++++++++++ ++++++++++++++++++++++   +++++++++++++++++++  ++++++++++++++++++                      
+                   ++++++++++           +++++++++++++++++++++++++++++++      ++++++++++++++++++ ++++++++++++++++++                      
+                  ++++++++++             +++++++++ ++++++++++++++++++          +++++++++++++++++++++++++++++++++++                      
+                  +++++++++               ++++++++     +++++++++++                 +++++++++++  ++++++++++++++++++                      
+        `);
+      });
+    </script>
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "6628e66f0b2041179298e8092552f5b9"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
+  </body>
 </html>
